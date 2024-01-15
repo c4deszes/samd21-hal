@@ -1,0 +1,45 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "armgcc-default",
+            "binaryDir": "${sourceDir}/_build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/armgcc-toolchain.cmake",
+                "SAMD21_HAL_BUILD_TESTS": "ON"
+            },
+            "hidden": true
+        },
+        {
+            "name": "armgcc-debug-unix",
+            "inherits": "armgcc-default",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "armgcc-debug-mingw",
+            "inherits": "armgcc-default",
+            "generator": "MinGW Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build-tests",
+            "targets": ["samd21-hal-test"]
+        },
+        {
+            "name": "build-docs",
+            "targets": [ "Sphinx" ]
+        }
+    ]
+}

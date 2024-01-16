@@ -25,21 +25,22 @@ target_include_directories(samd21-hal-api INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/
 
 add_library(samd21-hal-sources INTERFACE)
 target_sources(samd21-hal-sources INTERFACE
-    src/ac.c
-    src/adc.c
-    src/eic.c
-    src/gclk.c
-    src/gpio.c
-    src/pm.c
-    src/evsys.c
-    src/rtc.c
-    src/nvic.c
-    src/tc.c
-    src/tcc.c
-    src/wdt.c
-    src/startup.c
-    src/sysctrl.c
-    src/sercom_usart.c
+    src/hal/ac.c
+    src/hal/adc.c
+    src/hal/dsu.c
+    src/hal/eic.c
+    src/hal/gclk.c
+    src/hal/gpio.c
+    src/hal/pm.c
+    src/hal/evsys.c
+    src/hal/rtc.c
+    src/hal/nvic.c
+    src/hal/tc.c
+    src/hal/tcc.c
+    src/hal/wdt.c
+    src/hal/startup.c
+    src/hal/sysctrl.c
+    src/hal/sercom_usart.c
 
     src/common/ringbuffer.c
     src/common/swtimer.c

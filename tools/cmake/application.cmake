@@ -11,6 +11,7 @@ function(hexify)
         ""
         "TARGET;HEX"
         "EXTRA_ARGS"
+        ${ARGN}
     )
     add_custom_command(
         DEPENDS ${_TARGET}

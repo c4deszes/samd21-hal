@@ -44,6 +44,7 @@ target_sources(samd21-hal-sources INTERFACE
 
     src/common/ringbuffer.c
     src/common/swtimer.c
+    src/common/scheduler.c
 )
 
 add_library(samd21-hal-options INTERFACE)

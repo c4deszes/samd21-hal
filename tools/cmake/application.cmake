@@ -5,14 +5,20 @@
 # Prerequisites:
 #   CMAKE_OBJCOPY tool configured in the toolchain
 #   TARGET is an executable that can be converted into a hex file
-function(hexify TARGET HEX)
+function(hexify)
+    cmake_parse_arguments(
+        ""
+        ""
+        "TARGET;HEX"
+        "EXTRA_ARGS"
+    )
     add_custom_command(
-        DEPENDS ${TARGET}
-        COMMAND ${CMAKE_OBJCOPY} -O ihex $<TARGET_FILE:${TARGET}> ${HEX}
-        OUTPUT ${HEX}
+        DEPENDS ${_TARGET}
+        COMMAND ${CMAKE_OBJCOPY} ${_EXTRA_ARGS} -O ihex $<TARGET_FILE:${_TARGET}> ${_HEX}
+        OUTPUT ${_HEX}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "\tCreating hex output: ${HEX}")
-    add_custom_target(${TARGET}-hex DEPENDS ${HEX})
+    add_custom_target(${_TARGET}-hex DEPENDS ${_HEX})
 endfunction()
 
 # function(pymcuprog HEX DEVICE)
@@ -34,7 +40,7 @@ endfunction()
 function(binarize TARGET BIN)
     add_custom_command(
         DEPENDS ${TARGET}
-        COMMAND ${CMAKE_OBJCOPY} -O ihex $<TARGET_FILE:${TARGET}> ${BIN}
+        COMMAND ${CMAKE_OBJCOPY} -O bin $<TARGET_FILE:${TARGET}> ${BIN}
         OUTPUT ${BIN}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "\tCreating binary output: ${BIN}")
@@ -74,12 +80,3 @@ function(dump_size TARGET)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "\tCreating memory usage report ${TARGET}")
 endfunction()
-
-# This function writes the given hex files 
-# function(write_program TARGET HEX)
-#     add_custom_command(
-#         DEPENDS ${HEX}
-#         COMMAND "pymcuprog write -C -p COM3 -f ${HEX}"
-#         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-#         COMMENT "\tCreating memory usage report ${TARGET}")
-# endfunction()

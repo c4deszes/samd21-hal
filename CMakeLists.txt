@@ -35,6 +35,7 @@ target_sources(samd21-hal-sources INTERFACE
     src/hal/evsys.c
     src/hal/rtc.c
     src/hal/nvic.c
+    src/hal/nvmctrl.c
     src/hal/tc.c
     src/hal/tcc.c
     src/hal/wdt.c

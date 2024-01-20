@@ -3,6 +3,8 @@
 #include "atsamd21e18a.h"
 
 uint32_t DSU_CalculateCRC32(uint32_t initial, void* start, uint32_t length) {
+    PAC1_REGS->PAC_WPCLR = 0x02;
+    
     DSU_REGS->DSU_ADDR = (uint32_t) start;
     DSU_REGS->DSU_LENGTH = length;
     DSU_REGS->DSU_DATA = initial;
@@ -12,7 +14,11 @@ uint32_t DSU_CalculateCRC32(uint32_t initial, void* start, uint32_t length) {
 
     // TODO: should check BERR flag in STATUSA for bus errors
 
-    return DSU_REGS->DSU_DATA;
+    uint32_t crc = DSU_REGS->DSU_DATA;
+
+    PAC1_REGS->PAC_WPSET = 0x02;
+
+    return crc;
 }
 
 

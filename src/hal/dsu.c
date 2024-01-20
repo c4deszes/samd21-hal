@@ -5,8 +5,8 @@
 uint32_t DSU_CalculateCRC32(uint32_t initial, void* start, uint32_t length) {
     PAC1_REGS->PAC_WPCLR = 0x02;
     
-    DSU_REGS->DSU_ADDR = (uint32_t) start;
-    DSU_REGS->DSU_LENGTH = length;
+    DSU_REGS->DSU_ADDR = DSU_ADDR_ADDR((uint32_t) start);
+    DSU_REGS->DSU_LENGTH = DSU_LENGTH_LENGTH(length);
     DSU_REGS->DSU_DATA = initial;
     DSU_REGS->DSU_CTRL |= (DSU_CTRL_CRC_Msk);
 

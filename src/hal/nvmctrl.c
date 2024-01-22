@@ -14,7 +14,8 @@ void NVMCTRL_PageBufferClear(void) {
     while ((NVMCTRL_REGS->NVMCTRL_INTFLAG & NVMCTRL_INTFLAG_READY_Msk) == 0);
 }
 
-void NVMCTRL_WritePage(void) {
+void NVMCTRL_WritePage(uint32_t address) {
+    NVMCTRL_REGS->NVMCTRL_ADDR = address / 2;
     NVMCTRL_REGS->NVMCTRL_CTRLA = NVMCTRL_CTRLA_CMDEX_KEY | NVMCTRL_CTRLA_CMD_WP;
     while ((NVMCTRL_REGS->NVMCTRL_INTFLAG & NVMCTRL_INTFLAG_READY_Msk) == 0);
 }

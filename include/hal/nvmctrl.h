@@ -8,7 +8,7 @@ void NVMCTRL_EraseRow(uint16_t row);
 
 void NVMCTRL_PageBufferClear(void);
 
-void NVMCTRL_WritePage(void);
+void NVMCTRL_WritePage(uint32_t address);
 
 void NVMCTRL_SetAutoPageWrite(bool enabled);
 

@@ -14,6 +14,22 @@ typedef enum {
     PM_RCAUSE_POR
 } pm_rcause;
 
+typedef enum {
+    PM_SERCOM0,
+    PM_SERCOM1,
+    PM_SERCOM2,
+    PM_SERCOM3,
+
+    PM_TCC0,
+    PM_TCC1,
+    PM_TCC2,
+    PM_TC3,
+    PM_TC4,
+    PM_TC5
+
+    // TODO: add the rest
+} pm_peripheral_t;
+
 /**
  * @brief Returns the cause of the last reset
  * 
@@ -24,6 +40,10 @@ pm_rcause PM_ResetCause(void);
 void PM_SelectCpuDiv(uint8_t div);
 
 void PM_SelectBusDiv(uint8_t apba_sel, uint8_t apbb_sel, uint8_t apbc_sel);
+
+void PM_EnablePeripheralClock(pm_peripheral_t peripheral);
+
+//void PM_DisablePeripheralClock(pm_peripheral_t peripheral);
 
 /**
  * @brief CPU enters Idle mode, in this mode only a few interrupt types

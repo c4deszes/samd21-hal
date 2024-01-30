@@ -15,7 +15,7 @@ uint32_t DSU_CalculateCRC32(uint32_t initial, void* start, uint32_t length) {
 
     // TODO: should check BERR flag in STATUSA for bus errors
 
-    uint32_t crc = DSU_REGS->DSU_DATA;
+    uint32_t crc = (DSU_REGS->DSU_DATA) ^ 0xFFFFFFFFUL;
 
     // TODO: use PAC constants
     PAC1_REGS->PAC_WPSET = 0x02;

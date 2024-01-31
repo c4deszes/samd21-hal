@@ -17,4 +17,4 @@ jobs:
         run: cmake --preset armgcc-debug-unix
       
       - name: Build
-        run: cmake --build --preset build-tests
+        run: cmake --build --preset build-test-armgcc-debug-unix

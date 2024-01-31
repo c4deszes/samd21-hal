@@ -38,8 +38,9 @@
             "targets": ["samd21-hal-test"]
         },
         {
-            "name": "build-docs",
-            "targets": [ "Sphinx" ]
+            "name": "build-test-armgcc-debug-unix",
+            "inherits": "build-tests",
+            "configurePreset": "armgcc-debug-unix"
         }
     ]
 }

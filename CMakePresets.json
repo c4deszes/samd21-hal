@@ -35,7 +35,8 @@
     "buildPresets": [
         {
             "name": "build-tests",
-            "targets": ["samd21-hal-test"]
+            "targets": ["samd21-hal-test"],
+            "hidden": true
         },
         {
             "name": "build-test-armgcc-debug-unix",

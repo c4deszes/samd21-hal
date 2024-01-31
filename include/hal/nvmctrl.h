@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-void NVMCTRL_EraseRow(uint16_t row);
+void NVMCTRL_EraseRow(uint32_t address);
 
 void NVMCTRL_PageBufferClear(void);
 

@@ -35,11 +35,13 @@
     "buildPresets": [
         {
             "name": "build-tests",
-            "targets": ["samd21-hal-test"]
+            "targets": ["samd21-hal-test"],
+            "hidden": true
         },
         {
-            "name": "build-docs",
-            "targets": [ "Sphinx" ]
+            "name": "build-test-armgcc-debug-unix",
+            "inherits": "build-tests",
+            "configurePreset": "armgcc-debug-unix"
         }
     ]
 }

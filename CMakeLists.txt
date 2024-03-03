@@ -49,8 +49,8 @@ target_sources(samd21-hal-sources INTERFACE
 )
 
 add_library(samd21-hal-options INTERFACE)
-target_compile_options(samd21-hal-options INTERFACE "-mcpu=cortex-m0" "-gdwarf-2" "-mthumb")
-target_link_options(samd21-hal-options INTERFACE "-mcpu=cortex-m0" "-mthumb")
+target_compile_options(samd21-hal-options INTERFACE "-mcpu=cortex-m0plus" "-gdwarf-2" "-mthumb")
+target_link_options(samd21-hal-options INTERFACE "-mcpu=cortex-m0plus" "-mthumb")
 target_link_directories(samd21-hal-options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/ld)
 
 if(SAMD21_HAL_BUILD_TESTS)
@@ -66,8 +66,8 @@ if(SAMD21_HAL_BUILD_TESTS)
         tests/main.c
     )
     target_link_libraries(samd21-hal-test PRIVATE samd21-hal-test-lib)
-    target_compile_options(samd21-hal-test PRIVATE "-mcpu=cortex-m0" "-gdwarf-2" "-mthumb")
-    target_link_options(samd21-hal-test PRIVATE "-mcpu=cortex-m0" "-mthumb")
+    target_compile_options(samd21-hal-test PRIVATE "-mcpu=cortex-m0plus" "-gdwarf-2" "-mthumb")
+    target_link_options(samd21-hal-test PRIVATE "-mcpu=cortex-m0plus" "-mthumb")
     target_link_options(samd21-hal-test PRIVATE -TATSAMD21E18A.ld)
     target_link_options(samd21-hal-test PRIVATE -Wl,-Map=samd21-test.map -Wl,--gc-sections)
     set_target_properties(samd21-hal-test PROPERTIES SUFFIX ".elf")

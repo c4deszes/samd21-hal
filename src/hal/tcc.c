@@ -6,6 +6,8 @@
 static tcc_registers_t* get_peripheral(uint8_t timer) {
     switch (timer) {
         case TCC0: return TCC0_REGS;
+        case TCC1: return TCC1_REGS;
+        case TCC2: return TCC2_REGS;
     }
     // TODO: is this good?
     return NULL;
@@ -14,6 +16,8 @@ static tcc_registers_t* get_peripheral(uint8_t timer) {
 static IRQn_Type get_interrupt(uint8_t timer) {
     switch(timer) {
         case TCC0: return TCC0_IRQn;
+        case TCC1: return TCC1_IRQn;
+        case TCC2: return TCC2_IRQn;
     }
     return PERIPH_MAX_IRQn + 1;
 }
@@ -52,4 +56,20 @@ void TCC0_Handler(void) {
     TCC0_Interrupt();
 
     TCC0_REGS->TCC_INTFLAG = TCC_INTFLAG_Msk;
+}
+
+void TCC1_Interrupt(void) __attribute__((weak, alias("_DummyInterruptHandler")));
+
+void TCC1_Handler(void) {
+    TCC1_Interrupt();
+
+    TCC1_REGS->TCC_INTFLAG = TCC_INTFLAG_Msk;
+}
+
+void TCC2_Interrupt(void) __attribute__((weak, alias("_DummyInterruptHandler")));
+
+void TCC2_Handler(void) {
+    TCC2_Interrupt();
+
+    TCC2_REGS->TCC_INTFLAG = TCC_INTFLAG_Msk;
 }

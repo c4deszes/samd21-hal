@@ -5,6 +5,7 @@
 
 #define TCC0 0
 #define TCC1 1
+#define TCC2 2
 
 // TODO: support for other things, like prescaler, mode, interrupts
 void TCC_SetupTrigger(uint8_t timer, uint32_t period);
@@ -20,5 +21,8 @@ void TCC0_Interrupt(void);
 
 // TODO: update signature to include int. cause
 void TCC1_Interrupt(void);
+
+// TODO: update signature to include int. cause
+void TCC2_Interrupt(void);
 
 #endif // HAL_TCC_H_

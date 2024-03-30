@@ -28,7 +28,7 @@ void TCC_SetupTrigger(uint8_t timer, uint32_t period) {
     peripheral->TCC_CTRLA = TCC_CTRLA_PRESCALER_DIV1;
     peripheral->TCC_INTENSET = TCC_INTENSET_OVF_Msk;
     peripheral->TCC_INTFLAG = TCC_INTFLAG_Msk;
-    peripheral->TCC_PER = period;
+    peripheral->TCC_PER = period;                   // TODO: is this right? period bits seem to be offset
 
     NVIC_SetPriority(get_interrupt(timer), 10);
     NVIC_EnableIRQ(get_interrupt(timer));

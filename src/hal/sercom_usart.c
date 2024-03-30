@@ -150,6 +150,7 @@ static inline void SERCOM_USART_ISR_RX_Handler(uint8_t sercom) {
     }
 }
 
+// TODO: with this approach other comm. types cannot be used (SPI, I2C)
 void SERCOM0_Handler(void) {
     if(SERCOM0_REGS->USART_INT.SERCOM_INTENSET != 0)
     {
@@ -163,6 +164,31 @@ void SERCOM0_Handler(void) {
         if((SERCOM0_REGS->USART_INT.SERCOM_INTENSET & (SERCOM_USART_INT_INTENSET_RXC_Msk | SERCOM_USART_INT_INTENSET_RXBRK_Msk)) && (SERCOM0_REGS->USART_INT.SERCOM_INTFLAG & (SERCOM_USART_INT_INTFLAG_RXC_Msk | SERCOM_USART_INT_INTFLAG_RXBRK_Msk)))
         {
             SERCOM_USART_ISR_RX_Handler(0);
+        }
+
+        /* Checks for error flag */
+        // if((SERCOM0_REGS->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_ERROR_Msk) && (SERCOM0_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_ERROR_Msk))
+        // {
+        //     SERCOM0_USART_ISR_ERR_Handler();
+        // }
+    }
+}
+
+// TODO: add sercom1, sercom2
+
+void SERCOM3_Handler(void) {
+    if(SERCOM3_REGS->USART_INT.SERCOM_INTENSET != 0)
+    {
+        /* Checks for data register empty flag */
+        if((SERCOM3_REGS->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_DRE_Msk) && (SERCOM3_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_DRE_Msk))
+        {
+            SERCOM_USART_ISR_TX_Handler(3);
+        }
+
+        /* Checks for receive complete empty flag */
+        if((SERCOM3_REGS->USART_INT.SERCOM_INTENSET & (SERCOM_USART_INT_INTENSET_RXC_Msk | SERCOM_USART_INT_INTENSET_RXBRK_Msk)) && (SERCOM3_REGS->USART_INT.SERCOM_INTFLAG & (SERCOM_USART_INT_INTFLAG_RXC_Msk | SERCOM_USART_INT_INTFLAG_RXBRK_Msk)))
+        {
+            SERCOM_USART_ISR_RX_Handler(3);
         }
 
         /* Checks for error flag */

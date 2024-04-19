@@ -54,8 +54,9 @@ void TCC_SetupNormalPwm(uint8_t timer, uint32_t period, tcc_channel_setting_t ch
 
     peripheral->TCC_CC[0] = TCC_CC_CC(channels[0].cc);
     peripheral->TCC_CC[1] = TCC_CC_CC(channels[1].cc);
-    peripheral->TCC_CC[2] = TCC_CC_CC(channels[2].cc);
-    peripheral->TCC_CC[3] = TCC_CC_CC(channels[3].cc);
+    // TODO: why this goes to dummy handler?
+    //peripheral->TCC_CC[2] = TCC_CC_CC(channels[2].cc);
+    //peripheral->TCC_CC[3] = TCC_CC_CC(channels[3].cc);
 
     peripheral->TCC_INTFLAG = TCC_INTFLAG_Msk;
 }

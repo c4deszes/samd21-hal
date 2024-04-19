@@ -4,7 +4,7 @@ project(
     samd21-hal
     DESCRIPTION "SAMD21 Hardware Abstraction Layer"
     LANGUAGES C CXX ASM)
-set(PROJECT_VERSION "0.1.0")
+set(PROJECT_VERSION "0.2.0")
 
 option(SAMD21_HAL_BUILD_TESTS "Enables library test cases" OFF)
 

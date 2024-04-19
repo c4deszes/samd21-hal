@@ -36,4 +36,6 @@ uint8_t SERCOM_USART_Read(uint8_t sercom);
 
 void SERCOM_USART_FlushInput(uint8_t sercom);
 
+void SERCOM_USART_InterruptHandler(uint8_t sercom);
+
 #endif // HAL_SERCOM_USART_

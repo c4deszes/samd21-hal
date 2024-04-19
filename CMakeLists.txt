@@ -42,6 +42,8 @@ target_sources(samd21-hal-sources INTERFACE
     src/hal/startup.c
     src/hal/sysctrl.c
     src/hal/sercom_usart.c
+    src/hal/sercom_spi.c
+    src/hal/sercom_common.c
 
     src/common/ringbuffer.c
     src/common/swtimer.c

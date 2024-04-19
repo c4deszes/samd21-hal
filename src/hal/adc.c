@@ -8,6 +8,8 @@ static void syncADC() {
   //    while (ADC_REGS->STATUS.bit.SYNCBUSY == 1);
 }
 
+// TODO: ADC config based on: https://forum.arduino.cc/t/samd21-external-adc-reference/1047046
+
 void ADC_Init(void) {
     //uint32_t bias = (*((uint32_t *) ADC_FUSES_BIASCAL_ADDR) & ADC_FUSES_BIASCAL_Msk) >> ADC_FUSES_BIASCAL_Pos;
 

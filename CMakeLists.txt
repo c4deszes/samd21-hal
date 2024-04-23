@@ -4,7 +4,7 @@ project(
     samd21-hal
     DESCRIPTION "SAMD21 Hardware Abstraction Layer"
     LANGUAGES C CXX ASM)
-set(PROJECT_VERSION "0.1.0")
+set(PROJECT_VERSION "0.2.0")
 
 option(SAMD21_HAL_BUILD_TESTS "Enables library test cases" OFF)
 
@@ -42,6 +42,8 @@ target_sources(samd21-hal-sources INTERFACE
     src/hal/startup.c
     src/hal/sysctrl.c
     src/hal/sercom_usart.c
+    src/hal/sercom_spi.c
+    src/hal/sercom_common.c
 
     src/common/ringbuffer.c
     src/common/swtimer.c

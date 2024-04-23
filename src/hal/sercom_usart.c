@@ -1,30 +1,9 @@
 #include "hal/sercom_usart.h"
+#include "hal/sercom_internal.h"
 
 #include "atsamd21e18a.h"
 
 #include <stdlib.h>
-
-static inline sercom_registers_t* get_peripheral(uint8_t sercom) {
-    switch (sercom) {
-        case SERCOM0: return SERCOM0_REGS;
-        case SERCOM1: return SERCOM1_REGS;
-        case SERCOM2: return SERCOM2_REGS;
-        case SERCOM3: return SERCOM3_REGS;
-    }
-    // TODO: handle?
-    return NULL;
-}
-
-static inline IRQn_Type get_interrupt(uint8_t sercom) {
-    switch (sercom) {
-        case SERCOM0: return SERCOM0_IRQn;
-        case SERCOM1: return SERCOM1_IRQn;
-        case SERCOM2: return SERCOM2_IRQn;
-        case SERCOM3: return SERCOM3_IRQn;
-    }
-    // TODO: handle?
-    return PERIPH_MAX_IRQn + 1;
-}
 
 ringbuffer8_t* tx_buffers[4];
 ringbuffer8_t* rx_buffers[4];
@@ -34,7 +13,7 @@ void SERCOM_USART_SetupAsync(uint8_t sercom, uint32_t clock,
                              uint32_t baudrate, uint8_t tx_pad, uint8_t rx_pad,
                              ringbuffer8_t* tx_buffer, ringbuffer8_t* rx_buffer) {
 
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     tx_buffers[sercom] = tx_buffer;
     rx_buffers[sercom] = rx_buffer;
 
@@ -55,12 +34,12 @@ void SERCOM_USART_SetupAsync(uint8_t sercom, uint32_t clock,
                                            SERCOM_USART_INT_CTRLB_RXEN_Msk |
                                            SERCOM_USART_INT_CTRLB_TXEN_Msk;
 
-    NVIC_EnableIRQ(get_interrupt(sercom));
-    NVIC_SetPriority(get_interrupt(sercom), 2);
+    NVIC_EnableIRQ(SERCOM_GetInterrupt(sercom));
+    NVIC_SetPriority(SERCOM_GetInterrupt(sercom), 2);
 }
 
 void SERCOM_USART_Enable(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
 
     peripheral->USART_INT.SERCOM_CTRLA |= SERCOM_USART_INT_CTRLA_ENABLE_Msk;
 
@@ -69,25 +48,25 @@ void SERCOM_USART_Enable(uint8_t sercom) {
     peripheral->USART_INT.SERCOM_INTENSET = SERCOM_USART_INT_INTENSET_RXC_Msk | SERCOM_USART_INT_INTENSET_RXBRK_Msk;
 }
 
-volatile static bool writing = false;
+static volatile bool writing = false;
 
 static inline void SERCOM_USART_TX_INT_DISABLE(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     peripheral->USART_INT.SERCOM_INTENCLR = SERCOM_USART_INT_INTENCLR_DRE_Msk;
 }
 
 static inline void SERCOM_USART_TX_INT_ENABLE(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     peripheral->USART_INT.SERCOM_INTENSET = SERCOM_USART_INT_INTENSET_DRE_Msk;
 }
 
 static inline void SERCOM_USART_RX_INT_DISABLE(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     peripheral->USART_INT.SERCOM_INTENCLR = SERCOM_USART_INT_INTENSET_RXC_Msk;
 }
 
 static inline void SERCOM_USART_RX_INT_ENABLE(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     peripheral->USART_INT.SERCOM_INTENSET = SERCOM_USART_INT_INTENSET_RXC_Msk;
 }
 
@@ -102,7 +81,7 @@ void SERCOM_USART_WriteData(uint8_t sercom, uint8_t* data, uint8_t size) {
 }
 
 static inline void SERCOM_USART_ISR_TX_Handler(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     if (ringbuffer8_available(tx_buffers[sercom])) {
         uint8_t data = ringbuffer8_read(tx_buffers[sercom]);
         peripheral->USART_INT.SERCOM_DATA = (uint16_t) data;
@@ -136,7 +115,7 @@ uint8_t SERCOM_USART_Read(uint8_t sercom) {
 }
 
 static inline void SERCOM_USART_ISR_RX_Handler(uint8_t sercom) {
-    sercom_registers_t* peripheral = get_peripheral(sercom);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     if (peripheral->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_RXBRK_Msk) {
         /* Clear the receive break interrupt flag */
         peripheral->USART_INT.SERCOM_INTFLAG = SERCOM_USART_INT_INTFLAG_RXBRK_Msk;
@@ -150,25 +129,21 @@ static inline void SERCOM_USART_ISR_RX_Handler(uint8_t sercom) {
     }
 }
 
-void SERCOM0_Handler(void) {
-    if(SERCOM0_REGS->USART_INT.SERCOM_INTENSET != 0)
+void SERCOM_USART_InterruptHandler(uint8_t sercom) {
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
+    if((peripheral->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_DRE_Msk) && (peripheral->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_DRE_Msk))
     {
-        /* Checks for data register empty flag */
-        if((SERCOM0_REGS->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_DRE_Msk) && (SERCOM0_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_DRE_Msk))
-        {
-            SERCOM_USART_ISR_TX_Handler(0);
-        }
-
-        /* Checks for receive complete empty flag */
-        if((SERCOM0_REGS->USART_INT.SERCOM_INTENSET & (SERCOM_USART_INT_INTENSET_RXC_Msk | SERCOM_USART_INT_INTENSET_RXBRK_Msk)) && (SERCOM0_REGS->USART_INT.SERCOM_INTFLAG & (SERCOM_USART_INT_INTFLAG_RXC_Msk | SERCOM_USART_INT_INTFLAG_RXBRK_Msk)))
-        {
-            SERCOM_USART_ISR_RX_Handler(0);
-        }
-
-        /* Checks for error flag */
-        // if((SERCOM0_REGS->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_ERROR_Msk) && (SERCOM0_REGS->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_ERROR_Msk))
-        // {
-        //     SERCOM0_USART_ISR_ERR_Handler();
-        // }
+        SERCOM_USART_ISR_TX_Handler(sercom);
     }
+
+    /* Checks for receive complete empty flag */
+    if((peripheral->USART_INT.SERCOM_INTENSET & (SERCOM_USART_INT_INTENSET_RXC_Msk | SERCOM_USART_INT_INTENSET_RXBRK_Msk)) && (peripheral->USART_INT.SERCOM_INTFLAG & (SERCOM_USART_INT_INTFLAG_RXC_Msk | SERCOM_USART_INT_INTFLAG_RXBRK_Msk)))
+    {
+        SERCOM_USART_ISR_RX_Handler(sercom);
+    }
+
+    /* Checks for error flag */
+    // if((peripheral->USART_INT.SERCOM_INTENSET & SERCOM_USART_INT_INTENSET_ERROR_Msk) && (peripheral->USART_INT.SERCOM_INTFLAG & SERCOM_USART_INT_INTFLAG_ERROR_Msk))
+    // {
+    // }
 }

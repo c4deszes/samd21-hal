@@ -1,6 +1,6 @@
 #include "hal/sysctrl.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 void SYSCTRL_EnableInternalOSC32K(void) {
     // TODO: use fuse address constants

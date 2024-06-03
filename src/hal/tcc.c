@@ -1,7 +1,7 @@
 #include "hal/tcc.h"
 
 #include <stdlib.h>
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 static tcc_registers_t* get_peripheral(uint8_t timer) {
     switch (timer) {

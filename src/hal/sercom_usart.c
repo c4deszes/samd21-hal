@@ -1,7 +1,7 @@
 #include "hal/sercom_usart.h"
 #include "hal/sercom_internal.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 #include <stdlib.h>
 

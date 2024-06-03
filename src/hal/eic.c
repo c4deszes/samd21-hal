@@ -7,7 +7,7 @@
 
 #include "hal/eic.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 // eic_callback eic_handles[16];
 // eic_callback nmi_handle;

@@ -1,6 +1,6 @@
 #include "hal/ac.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 void AC_Enable(void) {
     AC_REGS->AC_CTRLA = AC_CTRLA_ENABLE_Msk;

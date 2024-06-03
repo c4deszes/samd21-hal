@@ -1,6 +1,6 @@
 #include "hal/nvmctrl.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 void NVMCTRL_EraseRow(uint32_t address) {
     NVMCTRL_REGS->NVMCTRL_ADDR = address >> 1U;

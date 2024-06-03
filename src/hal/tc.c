@@ -1,5 +1,5 @@
 #include "hal/tc.h"
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 #include <stdlib.h>
 

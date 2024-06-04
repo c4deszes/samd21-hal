@@ -22,23 +22,23 @@ target_include_directories(cmsis INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/lib/CMSIS
 
 add_library(samx21-sources INTERFACE)
 target_sources(samx21-sources INTERFACE
-    src/hal/ac.c
-    src/hal/adc.c
-    src/hal/dsu.c
-    src/hal/eic.c
-    src/hal/gclk.c
+    # src/hal/ac.c
+    # src/hal/adc.c
+    # src/hal/dsu.c
+    # src/hal/eic.c
+    # src/hal/gclk.c
     src/hal/gpio.c
-    src/hal/pm.c
-    src/hal/evsys.c
-    src/hal/rtc.c
+    # src/hal/pm.c
+    # src/hal/evsys.c
+    # src/hal/rtc.c
     src/hal/nvic.c
-    src/hal/nvmctrl.c
-    src/hal/tc.c
+    # src/hal/nvmctrl.c
+    # src/hal/tc.c
     src/hal/tcc.c
-    src/hal/wdt.c
-    src/hal/sysctrl.c
+    # src/hal/wdt.c
+    # src/hal/sysctrl.c
     src/hal/sercom_usart.c
-    src/hal/sercom_spi.c
+    # src/hal/sercom_spi.c
     src/hal/sercom_common.c
 
     src/common/ringbuffer.c
@@ -73,7 +73,7 @@ function(samx21_hal TARGET CHIPNAME)
 endfunction()
 
 if(SAMD21_HAL_BUILD_TESTS)
-    samx21_hal(samd21-hal-test-lib ATSAMD21E18A)
+    samx21_hal(samd21-hal-test-lib ATSAMC21E18A)
     add_executable(samd21-hal-test EXCLUDE_FROM_ALL
         tests/main.c
     )

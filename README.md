@@ -7,13 +7,8 @@ Hardware Abstraction Layer for SAMD21 microcontrollers.
 The library can be included as a submodule or via CPM.cmake, in either case the master branch can
 be used.
 
-A total of 5 interface targets are registered all of which should be linked to a target.
-
-- cmsis: includes the CMSIS header files
-- atsamd21e18a-dfp: microcontroller specific registers
-- samd21-hal-api: library's header files
-- samd21-hal-sources: library's source code
-- samd21-hal-options: recommended compilation and linker flags
+A function is registered which when used will create a new interface library with everything
+included. See the example below on how to use it.
 
 ### Example
 
@@ -21,12 +16,11 @@ A total of 5 interface targets are registered all of which should be linked to a
 include(tools/cmake/CPM.cmake)
 CPMAddPackage("gh:c4deszes/samd21-hal#master")
 
+samx21_hal(samd21 ATSAMD21E18A)
+
 add_executable(MyApp src/main.c)
-target_link_libraries(MyApp PUBLIC  cmsis
-                                    atsamd21e18a-dfp
-                                    samd21-hal-api
-                                    samd21-hal-sources
-                                    samd21-hal-options)
+target_link_libraries(MyApp PUBLIC samd21)
+target_link_options(MyApp PRIVATE -T$<TARGET_PROPERTY:samd21,DEFAULT_LINKERSCRIPT>)
 ```
 
 ## Peripherals
@@ -48,7 +42,7 @@ target_link_libraries(MyApp PUBLIC  cmsis
 | Power Manager | PM | No interrupt support, cannot control all peripherals |
 | Real Time Clock | RTC | Non functional |
 | SERCOM USART | SERCOM_USART | Only supports async mode, fixed 8/N/1 |
-| SERCOM SPI | SERCOM_SPI | Not implemented |
+| SERCOM SPI | SERCOM_SPI | Implemented |
 | SERCOM I2C | SERCOM_I2C | Not implemented |
 | System Controller | SYSCTRL | Only supports DFLL, OSC8M, OSC32K |
 | Timer Counter | TC | Only supports capture mode |
@@ -58,8 +52,6 @@ target_link_libraries(MyApp PUBLIC  cmsis
 
 ## Components
 
-- NVIC: enables interrupts
-- Startup: initializes the zero section, sets the vector table pointer
 - Ringbuffer: implements ringbuffers for 8, 16 and 32 bit unsigned integers
 - Software Timer: implements a count down mechanism
 - Scheduler: implements a round robin scheduler

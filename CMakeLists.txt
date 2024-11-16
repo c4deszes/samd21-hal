@@ -17,30 +17,37 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake/application.cmake)
 add_library(cmsis INTERFACE)
 target_include_directories(cmsis INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/lib/CMSIS/CMSIS/Core/Include)
 
-# add_library(atsamd21e18a-dfp INTERFACE)
-# target_include_directories(atsamd21e18a-dfp INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/lib/ATSAMD21E18A_DFP)
-
 add_library(samx21-sources INTERFACE)
 target_sources(samx21-sources INTERFACE
-    # src/hal/ac.c
-    # src/hal/adc.c
-    # src/hal/dsu.c
-    # src/hal/eic.c
-    # src/hal/gclk.c
+    # Input output
+    src/hal/ac.c
+    src/hal/adc.c
+    src/hal/eic.c
     src/hal/gpio.c
-    # src/hal/pm.c
-    # src/hal/evsys.c
-    # src/hal/rtc.c
-    src/hal/nvic.c
-    # src/hal/nvmctrl.c
-    # src/hal/tc.c
+
+    # Timing
+    src/hal/rtc.c
+    src/hal/tc.c
     src/hal/tcc.c
-    # src/hal/wdt.c
-    # src/hal/sysctrl.c
+
+    # Memory
+    src/hal/nvmctrl.c
+
+    # System
+    src/hal/evsys.c
+    src/hal/gclk.c
+    src/hal/pm.c
+    src/hal/dsu.c
+    src/hal/wdt.c
+    src/hal/sysctrl.c
+    src/hal/nvic.c
+
+    # Communication
     src/hal/sercom_usart.c
-    # src/hal/sercom_spi.c
+    src/hal/sercom_spi.c
     src/hal/sercom_common.c
 
+    # Utilities
     src/common/ringbuffer.c
     src/common/swtimer.c
     src/common/scheduler.c
@@ -73,7 +80,7 @@ function(samx21_hal TARGET CHIPNAME)
 endfunction()
 
 if(SAMD21_HAL_BUILD_TESTS)
-    samx21_hal(samd21-hal-test-lib ATSAMC21E18A)
+    samx21_hal(samd21-hal-test-lib ATSAMD21E18A)
     add_executable(samd21-hal-test EXCLUDE_FROM_ALL
         tests/main.c
     )

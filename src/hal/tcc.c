@@ -54,7 +54,7 @@ void TCC_SetupNormalPwm(uint8_t timer, uint32_t period, tcc_channel_setting_t ch
 
     peripheral->TCC_CC[0] = TCC_CC_CC(channels[0].cc);
     peripheral->TCC_CC[1] = TCC_CC_CC(channels[1].cc);
-    // TODO: why this goes to dummy handler?
+    // TODO: not all TCC-s have all outputs, so this might go to dummy handler
     //peripheral->TCC_CC[2] = TCC_CC_CC(channels[2].cc);
     //peripheral->TCC_CC[3] = TCC_CC_CC(channels[3].cc);
 
@@ -78,15 +78,15 @@ void TCC_Reset(uint8_t timer) {
 void TCC_SetPeriod(uint8_t timer, uint32_t period) {
     tcc_registers_t* peripheral = get_peripheral(timer);
 
-    peripheral->TCC_PERBUF = period;
-    while((peripheral->TCC_SYNCBUSY & TCC_SYNCBUSY_PER_Msk) != 0);
+    peripheral->TCC_PERB = period;
+    while((peripheral->TCC_SYNCBUSY & TCC_SYNCBUSY_PERB_Msk) != 0);
 }
 
 void TCC_SetCompareCapture(uint8_t timer, uint8_t channel, uint32_t compare) {
     tcc_registers_t* peripheral = get_peripheral(timer);
 
-    peripheral->TCC_CCBUF[channel] = TCC_CCBUF_CCBUF(compare);
-    while((peripheral->TCC_SYNCBUSY & TCC_SYNCBUSY_CC_Msk) != 0);
+    peripheral->TCC_CCB[channel] = TCC_CCBUF_CCB(compare);
+    while((peripheral->TCC_SYNCBUSY & TCC_SYNCBUSY_CCB_Msk) != 0);
 }
 
 static void _DummyInterruptHandler(void) {}

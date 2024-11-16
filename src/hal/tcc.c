@@ -85,7 +85,7 @@ void TCC_SetPeriod(uint8_t timer, uint32_t period) {
 void TCC_SetCompareCapture(uint8_t timer, uint8_t channel, uint32_t compare) {
     tcc_registers_t* peripheral = get_peripheral(timer);
 
-    peripheral->TCC_CCB[channel] = TCC_CCBUF_CCB(compare);
+    peripheral->TCC_CCB[channel] = TCC_CCB_CCB(compare);
     while((peripheral->TCC_SYNCBUSY & TCC_SYNCBUSY_CCB_Msk) != 0);
 }
 

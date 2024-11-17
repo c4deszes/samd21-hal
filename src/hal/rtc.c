@@ -1,7 +1,7 @@
 #include "hal/rtc.h"
 #include "hal/evsys.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 static inline void RTC_WaitForSync(void) {
     while((RTC_REGS->MODE0.RTC_STATUS & RTC_STATUS_SYNCBUSY_Msk) == RTC_STATUS_SYNCBUSY_Msk);

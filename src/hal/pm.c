@@ -1,5 +1,5 @@
 #include "hal/pm.h"
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 pm_rcause PM_ResetCause(void) {
     return (pm_rcause) PM_REGS->PM_RCAUSE;

@@ -5,7 +5,7 @@
  */
 #include "hal/gpio.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 void GPIO_SetupPinStandby(uint8_t group, uint8_t pin, const gpio_pin_standby_configuration* conf) {
     uint32_t pin_mask = (1 << pin);

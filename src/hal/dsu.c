@@ -1,6 +1,6 @@
 #include "hal/dsu.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 uint32_t DSU_CalculateCRC32(uint32_t initial, void* start, uint32_t length) {
     // TODO: use PAC constants

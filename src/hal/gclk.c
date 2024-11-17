@@ -1,6 +1,6 @@
 #include "hal/gclk.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 void GCLK_ConfigureGenerator(uint8_t generator, uint8_t source, uint16_t division) {
     GCLK_REGS->GCLK_GENCTRL = GCLK_GENCTRL_SRC(source) | GCLK_GENCTRL_GENEN_Msk | GCLK_GENCTRL_ID(generator);

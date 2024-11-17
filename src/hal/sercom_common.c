@@ -3,7 +3,7 @@
 
 #include "hal/sercom_internal.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 #include <stdlib.h>
 
 sercom_registers_t* SERCOM_GetPeripheral(uint8_t sercom) {

@@ -1,6 +1,6 @@
 #include "hal/wdt.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 void WDT_InitializeNormal(const wdt_normal_configuration* wdt_conf) {
     WDT_REGS->WDT_CONFIG = wdt_conf->period;

@@ -1,5 +1,5 @@
 #include "hal/evsys.h"
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 static uint8_t generators = 0;
 

@@ -1,6 +1,6 @@
 #include "hal/adc.h"
 
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 static __inline__ void syncADC() __attribute__((always_inline, unused));
 static void syncADC() {

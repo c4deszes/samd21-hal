@@ -1,7 +1,7 @@
 #include "hal/sercom_spi.h"
 
 #include <stdlib.h>
-#include "atsamd21e18a.h"
+#include "sam.h"
 
 static inline uint8_t spi_clock_calculate(uint32_t clock_in, uint32_t datarate) {
     return clock_in / (2 * datarate) - 1;

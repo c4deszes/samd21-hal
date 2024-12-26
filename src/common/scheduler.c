@@ -4,10 +4,16 @@
 
 static volatile uint8_t task1ms_flag = 0;
 static volatile uint8_t task10ms_flag = 0;
+static volatile uint8_t task100ms_flag = 0;
+static volatile uint8_t task500ms_flag = 0;
+static volatile uint8_t task1000ms_flag = 0;
 
 void SCH_Init(void) {
     task1ms_flag = 0;
     task10ms_flag = 0;
+    task100ms_flag = 0;
+    task500ms_flag = 0;
+    task1000ms_flag = 0;
 }
 
 void SCH_Enter(void) {
@@ -20,6 +26,21 @@ void SCH_Enter(void) {
         if (task10ms_flag >= 10) {
             SCH_Task10ms_A();
             task10ms_flag = 0;
+            task100ms_flag++;
+        }
+        if (task100ms_flag >= 10) {
+            SCH_Task100ms();
+            task100ms_flag = 0;
+            task500ms_flag++;
+        }
+        if (task500ms_flag >= 5) {
+            SCH_Task500ms();
+            task500ms_flag = 0;
+            task1000ms_flag++;
+        }
+        if (task1000ms_flag >= 2) {
+            SCH_Task1000ms();
+            task1000ms_flag = 0;
         }
     }
 }

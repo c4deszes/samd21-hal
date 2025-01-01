@@ -7,6 +7,7 @@
 
 ringbuffer8_t* tx_buffers[4];
 ringbuffer8_t* rx_buffers[4];
+static volatile bool write_status[4];
 
 // goal for now is 9600-19200, 8N1, using interrupts
 void SERCOM_USART_SetupAsync(uint8_t sercom, uint32_t clock,
@@ -16,6 +17,7 @@ void SERCOM_USART_SetupAsync(uint8_t sercom, uint32_t clock,
     sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     tx_buffers[sercom] = tx_buffer;
     rx_buffers[sercom] = rx_buffer;
+    write_status[sercom] = false;
 
     peripheral->USART_INT.SERCOM_CTRLA = SERCOM_USART_INT_CTRLA_MODE_USART_INT_CLK | 
                                            SERCOM_USART_INT_CTRLA_RXPO(rx_pad) |
@@ -48,8 +50,6 @@ void SERCOM_USART_Enable(uint8_t sercom) {
     peripheral->USART_INT.SERCOM_INTENSET = SERCOM_USART_INT_INTENSET_RXC_Msk | SERCOM_USART_INT_INTENSET_RXBRK_Msk;
 }
 
-static volatile bool writing = false;
-
 static inline void SERCOM_USART_TX_INT_DISABLE(uint8_t sercom) {
     sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
     peripheral->USART_INT.SERCOM_INTENCLR = SERCOM_USART_INT_INTENCLR_DRE_Msk;
@@ -71,7 +71,7 @@ static inline void SERCOM_USART_RX_INT_ENABLE(uint8_t sercom) {
 }
 
 void SERCOM_USART_WriteData(uint8_t sercom, uint8_t* data, uint8_t size) {
-    while(writing);
+    while(write_status[sercom]);
 
     for (uint8_t i = 0; i < size; i++) {
         ringbuffer8_write(tx_buffers[sercom], data[i]);
@@ -88,12 +88,12 @@ static inline void SERCOM_USART_ISR_TX_Handler(uint8_t sercom) {
     }
     else {
         SERCOM_USART_TX_INT_DISABLE(sercom);
-        writing = false;
+        write_status[sercom] = false;
     }
 }
 
 void SERCOM_USART_FlushOutput(uint8_t sercom) {
-    writing = true;
+    write_status[sercom] = true;
     SERCOM_USART_TX_INT_ENABLE(sercom);
     SERCOM_USART_ISR_TX_Handler(sercom);
 }

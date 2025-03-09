@@ -4,7 +4,7 @@ project(
     samd21-hal
     DESCRIPTION "SAMD21 Hardware Abstraction Layer"
     LANGUAGES C CXX ASM)
-set(PROJECT_VERSION "0.2.0")
+set(PROJECT_VERSION "0.4.0")
 
 option(SAMD21_HAL_BUILD_TESTS "Enables library test cases" OFF)
 
@@ -69,7 +69,7 @@ function(samx21_hal TARGET CHIPNAME)
     target_link_directories(${TARGET} INTERFACE ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/lib/${CHIPFAMILY}/ld)
     set_target_properties(${TARGET} PROPERTIES DEFAULT_LINKERSCRIPT "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/lib/${CHIPFAMILY}/ld/${CHIPNAME_LOW_NOAT}_flash.ld")
 
-    target_compile_definitions(${TARGET} INTERFACE "__${CHIPNAME}__")
+    target_compile_definitions(${TARGET} INTERFACE "__${CHIPNAME}__" "__${CHIPFAMILY}__")
     target_compile_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-gdwarf-2" "-mthumb")
     target_link_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-mthumb")
 

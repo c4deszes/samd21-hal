@@ -43,6 +43,17 @@ void EVSYS_ConfigureGenerator(uint8_t channel, evsys_gen_edgesel edgsel, evsys_g
 void EVSYS_ConfigureUser(uint8_t user_channel, uint8_t event_generator);
 
 /**
+ * @brief Disconnects the event user from the event generator
+ * 
+ * @code
+ * EVSYS_DisconnectUser(EVENT_ID_USER_TC4_EVU);
+ * @endcode
+ * 
+ * @param user_channel Event's consumer
+ */
+void EVSYS_DisconnectUser(uint8_t user_channel);
+
+/**
  * @brief Acquires a free generator channel
  * 
  * @code

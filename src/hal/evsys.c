@@ -11,7 +11,11 @@ void EVSYS_ConfigureGenerator(uint8_t channel, evsys_gen_edgesel edgsel, evsys_g
 }
 
 void EVSYS_ConfigureUser(uint8_t user_channel, uint8_t event_generator) {
-    EVSYS_REGS->EVSYS_USER = (event_generator << EVSYS_USER_CHANNEL_Pos) | user_channel;
+    EVSYS_REGS->EVSYS_USER = ((event_generator + 1) << EVSYS_USER_CHANNEL_Pos) | (user_channel);
+}
+
+void EVSYS_DisconnectUser(uint8_t user_channel) {
+    EVSYS_REGS->EVSYS_USER = (0 << EVSYS_USER_CHANNEL_Pos) | (user_channel);
 }
 
 uint8_t EVSYS_AcquireGeneratorChannel(void) {

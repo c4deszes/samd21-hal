@@ -6,7 +6,7 @@
  * @brief Wait for the ADC registers to finish synchronizing.
  */
 static void ADC_Sync() {
-    while (ADC_REGS->ADC_STATUS & ADC_STATUS_SYNCBUSY_Msk != 0);
+    while ((ADC_REGS->ADC_STATUS & ADC_STATUS_SYNCBUSY_Msk) != 0);
 }
 
 /**
@@ -87,7 +87,7 @@ void ADC_Reset(void) {
     ADC_Sync();
 }
 
-void ADC_Stop(void) {
+void ADC_Disable(void) {
     ADC_REGS->ADC_CTRLA &= ~ADC_CTRLA_ENABLE_Msk; // Disable the ADC
     ADC_Sync();
 }

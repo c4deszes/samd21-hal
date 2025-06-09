@@ -7,6 +7,7 @@ project(
 set(PROJECT_VERSION "0.4.0")
 
 option(SAMD21_HAL_BUILD_TESTS "Enables library test cases" OFF)
+option(SAMD21_HAL_BUILD_DOCS "Enables documentation build" OFF)
 
 # Tools
 include(${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake/application.cmake)
@@ -70,7 +71,7 @@ function(samx21_hal TARGET CHIPNAME)
     set_target_properties(${TARGET} PROPERTIES DEFAULT_LINKERSCRIPT "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/lib/${CHIPFAMILY}/ld/${CHIPNAME_LOW_NOAT}_flash.ld")
 
     target_compile_definitions(${TARGET} INTERFACE "__${CHIPNAME}__" "__${CHIPFAMILY}__")
-    target_compile_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-gdwarf-2" "-mthumb")
+    target_compile_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-mthumb")
     target_link_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-mthumb")
 
     target_link_libraries(${TARGET} INTERFACE   cmsis
@@ -89,4 +90,8 @@ if(SAMD21_HAL_BUILD_TESTS)
     target_link_options(samd21-hal-test PRIVATE -T$<TARGET_PROPERTY:samd21-hal-test-lib,DEFAULT_LINKERSCRIPT>)
     target_link_options(samd21-hal-test PRIVATE -Wl,-Map=samd21-test.map -Wl,--gc-sections)
     set_target_properties(samd21-hal-test PROPERTIES SUFFIX ".elf")
+endif()
+
+if (SAMD21_HAL_BUILD_DOCS)
+    add_subdirectory(docs)
 endif()

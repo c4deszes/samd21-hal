@@ -11,7 +11,8 @@
             "binaryDir": "${sourceDir}/_build/${presetName}",
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/armgcc-toolchain.cmake",
-                "SAMD21_HAL_BUILD_TESTS": "ON"
+                "SAMD21_HAL_BUILD_TESTS": "ON",
+                "SAMD21_HAL_BUILD_DOCS": "ON"
             },
             "hidden": true
         },
@@ -36,6 +37,11 @@
         {
             "name": "build-tests",
             "targets": ["samd21-hal-test"],
+            "hidden": true
+        },
+        {
+            "name": "build-docs",
+            "targets": ["Sphinx"],
             "hidden": true
         },
         {

@@ -56,7 +56,9 @@ uint32_t ringbuffer32_read(ringbuffer32_t* self);
         .numElems = bufferSize \
     }
 
-// Macro to declare a global ring buffer for 16-bit data
+#define DECLARE_RINGBUFFER_16(bufferName) \
+    extern ringbuffer16_t bufferName;
+
 #define RINGBUFFER_16(bufferName, bufferSize) \
     uint16_t bufferName##_data[bufferSize]; \
     ringbuffer16_t bufferName = { \
@@ -66,7 +68,9 @@ uint32_t ringbuffer32_read(ringbuffer32_t* self);
         .numElems = bufferSize \
     }
 
-// Macro to declare a global ring buffer for 32-bit data
+#define DECLARE_RINGBUFFER_32(bufferName) \
+    extern ringbuffer32_t bufferName;
+
 #define RINGBUFFER_32(bufferName, bufferSize) \
     uint32_t bufferName##_data[bufferSize]; \
     ringbuffer32_t bufferName = { \

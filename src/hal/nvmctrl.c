@@ -41,3 +41,18 @@ uint16_t NVMCTRL_GetPageSize(void) {
 uint16_t NVMCTRL_GetPageCount(void) {
     return (NVMCTRL_REGS->NVMCTRL_PARAM & NVMCTRL_PARAM_NVMP_Msk) >> NVMCTRL_PARAM_NVMP_Pos;
 }
+
+bool NVMCTRL_WritePages(uint32_t address, const uint8_t *data, uint16_t page_count)
+{
+    // TODO: validate the input parameters
+
+    for (uint16_t i = 0; i < page_count; i += 1) {
+        NVMCTRL_PageBufferClear();
+        for (uint16_t j = 0; j < 64u; j += 4) {
+            *((uint32_t*)(address + i * 64u + j)) = *((uint32_t*)((data) + i * 64u + j));
+        }
+        NVMCTRL_WritePage(address + i * 64u);
+    }
+
+    return true;
+}

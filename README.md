@@ -28,7 +28,7 @@ target_link_options(MyApp PRIVATE -T$<TARGET_PROPERTY:samd21,DEFAULT_LINKERSCRIP
 | Name | Abbreviation | Status |
 |-|-|-|
 | Analog Comparator | AC | Non functional |
-| Analog-to-Digital Converter | ADC | Non-functional |
+| Analog-to-Digital Converter | ADC | Single shot mode available |
 | Digital-to-Analog Converter | DAC | Not implemented |
 | Direct Memory Access Controller | DMAC | Not implemented |
 | Device Signature Unit | DSU | Only supports CRC and Serial number |

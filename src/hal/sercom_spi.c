@@ -1,4 +1,5 @@
 #include "hal/sercom_spi.h"
+#include "hal/sercom_internal.h"
 
 #include <stdlib.h>
 #include "sam.h"

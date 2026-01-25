@@ -1,5 +1,5 @@
 {
-    "version": 2,
+    "version": 6,
     "cmakeMinimumRequired": {
         "major": 3,
         "minor": 20,
@@ -7,7 +7,7 @@
     },
     "configurePresets": [
         {
-            "name": "armgcc-default",
+            "name": "conf-armgcc-default",
             "binaryDir": "${sourceDir}/_build/${presetName}",
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/tools/cmake/armgcc-toolchain.cmake",
@@ -17,16 +17,16 @@
             "hidden": true
         },
         {
-            "name": "armgcc-debug-unix",
-            "inherits": "armgcc-default",
+            "name": "conf-debug-unix",
+            "inherits": "conf-armgcc-default",
             "generator": "Unix Makefiles",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "armgcc-debug-mingw",
-            "inherits": "armgcc-default",
+            "name": "conf-debug-mingw",
+            "inherits": "conf-armgcc-default",
             "generator": "MinGW Makefiles",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -35,19 +35,54 @@
     ],
     "buildPresets": [
         {
-            "name": "build-tests",
-            "targets": ["samd21-hal-test"],
+            "name": "build-test-targets",
+            "targets": [
+                "samd21-hal-test"
+            ],
             "hidden": true
         },
         {
-            "name": "build-docs",
+            "name": "build-docs-targets",
             "targets": ["Sphinx"],
             "hidden": true
         },
         {
-            "name": "build-test-armgcc-debug-unix",
-            "inherits": "build-tests",
-            "configurePreset": "armgcc-debug-unix"
+            "name": "build-tests-unix",
+            "configurePreset": "conf-debug-unix",
+            "inherits": "build-test-targets"
+        },
+        {
+            "name": "build-docs-unix",
+            "configurePreset": "conf-debug-unix",
+            "inherits": "build-docs-targets"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "workflow-build",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "conf-debug-unix"
+                },
+                {
+                    "type": "build",
+                    "name": "build-tests-unix"
+                }
+            ]
+        },
+        {
+            "name": "workflow-docs",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "conf-debug-unix"
+                },
+                {
+                    "type": "build",
+                    "name": "build-docs-unix"
+                }
+            ]
         }
     ]
 }

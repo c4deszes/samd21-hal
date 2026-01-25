@@ -8,13 +8,25 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/c4deszes/arm-gcc-docker:v1.0.1
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.4.0
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure
-        run: cmake --preset armgcc-debug-unix
+        uses: actions/checkout@v6
       
       - name: Build
-        run: cmake --build --preset build-test-armgcc-debug-unix
+        run: cmake --workflow --preset workflow-build
+
+  documentation:
+    name: Documentation
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.4.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen
+
+      - name: Generate Documentation
+        run: cmake --workflow --preset workflow-docs

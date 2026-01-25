@@ -48,13 +48,13 @@
         },
         {
             "name": "build-tests-unix",
-            "inherits": "build-test-targets",
-            "configurePreset": "conf-debug-unix"
+            "configurePreset": "conf-debug-unix",
+            "inherits": "build-test-targets"
         },
         {
             "name": "build-docs-unix",
-            "inherits": "build-docs-targets",
-            "configurePreset": "conf-debug-unix"
+            "configurePreset": "conf-debug-unix",
+            "inherits": "build-docs-targets"
         }
     ],
     "workflowPresets": [
@@ -67,7 +67,7 @@
                 },
                 {
                     "type": "build",
-                    "name": "build-test-targets"
+                    "name": "build-tests-unix"
                 }
             ]
         },

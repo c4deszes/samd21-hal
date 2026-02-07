@@ -1,7 +1,5 @@
 #include "hal/nvmctrl.h"
 
-#include "sam.h"
-
 void NVMCTRL_EraseRow(uint32_t address) {
     
 }

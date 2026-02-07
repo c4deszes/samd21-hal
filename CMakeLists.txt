@@ -99,6 +99,10 @@ target_sources(samx21-sim INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/sercom_spi.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/tcc.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/wdt.c
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/common/ringbuffer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/common/swtimer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/common/scheduler.c
 )
 
 ################################################################################

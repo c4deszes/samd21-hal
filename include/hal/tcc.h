@@ -1,6 +1,10 @@
 #if !defined(HAL_TCC_H_)
 #define HAL_TCC_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -37,5 +41,9 @@ void TCC1_Interrupt(void);
 
 // TODO: update signature to include int. cause
 void TCC2_Interrupt(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_TCC_H_

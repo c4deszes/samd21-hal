@@ -90,6 +90,17 @@ function(samx21_hal TARGET CHIPNAME)
                                                 samx21-sources)
 endfunction()
 
+add_library(samx21-sim INTERFACE)
+target_sources(samx21-sim INTERFACE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/dsu.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/gpio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/nvic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/nvmctrl.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/sercom_spi.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/tcc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/wdt.c
+)
+
 ################################################################################
 # Testing
 ################################################################################

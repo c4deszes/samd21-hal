@@ -1,6 +1,10 @@
 #if !defined(COMMON_SW_TIMER_H_)
 #define COMMON_SW_TIMER_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -43,5 +47,9 @@ void SWTIMER_Setup(swtimer_t* timer, uint16_t millis);
  * @return true if the timer has elapsed, false otherwise
  */
 bool SWTIMER_Elapsed(swtimer_t* timer);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // COMMON_SW_TIMER_H_

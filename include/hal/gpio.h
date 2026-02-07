@@ -6,6 +6,10 @@
 #ifndef ATSAME54_HAL_INCLUDE_HAL_IO_GPIO_H_
 #define ATSAME54_HAL_INCLUDE_HAL_IO_GPIO_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -197,5 +201,9 @@ void GPIO_GroupClear(uint8_t group, uint32_t mask);
  * @param mask Mask of the pins to toggle eg. #PORT_PA12 or 0xf0000000
  */
 void GPIO_GroupToggle(uint8_t group, uint32_t mask);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif  // ATSAME54_HAL_INCLUDE_HAL_IO_GPIO_H_

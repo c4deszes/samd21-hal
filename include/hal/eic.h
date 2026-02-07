@@ -6,6 +6,10 @@
 #ifndef ATSAME54_HAL_INCLUDE_HAL_IO_EIC_H_
 #define ATSAME54_HAL_INCLUDE_HAL_IO_EIC_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -41,5 +45,9 @@ void EIC_Initialize(const eic_configuration* conf);
 void EIC_EnableInterrupt(uint8_t pin);
 
 void EIC_DisableInterrupt(uint8_t pin);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif  // ATSAME54_HAL_INCLUDE_HAL_IO_EIC_H_

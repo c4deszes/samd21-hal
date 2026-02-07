@@ -1,6 +1,11 @@
 #if !defined(HAL_ADC_H_)
 #define HAL_ADC_H_
 
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 typedef void (*adc_result_callback_t)(uint16_t result);
@@ -32,5 +37,9 @@ void ADC_ReadAsync(uint8_t channel, adc_result_callback_t callback);
  * @brief Resets the ADC to its default state.
  */
 void ADC_Reset(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_ADC_H_

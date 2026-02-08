@@ -10,6 +10,8 @@ extern "C" {
  */
 void NVIC_Initialize(void);
 
+void NVIC_Reset(void);
+
 #if defined(__cplusplus)
 }
 #endif

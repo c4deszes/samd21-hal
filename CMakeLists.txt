@@ -30,6 +30,7 @@ target_sources(samx21-sources INTERFACE
     # Input output
     src/hal/ac.c
     src/hal/adc.c
+    src/hal/dac.c
     src/hal/eic.c
     src/hal/gpio.c
 

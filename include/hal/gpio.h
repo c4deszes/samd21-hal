@@ -90,6 +90,11 @@ typedef struct {
     gpio_pin_drive_strength drive;
 } gpio_pin_output_configuration;
 
+extern const gpio_pin_standby_configuration GPIO_STANDBY_DEFAULT_CONFIG;
+extern const gpio_pin_input_configuration GPIO_INPUT_DEFAULT_CONFIG;
+extern const gpio_pin_input_configuration GPIO_INPUT_PULLUP_CONFIG;
+extern const gpio_pin_output_configuration GPIO_OUTPUT_DEFAULT_CONFIG;
+
 /**
  * @brief Configures the pin for standby operation, meaning that the pin is
  * not used as an input or as an output.

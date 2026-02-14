@@ -7,6 +7,25 @@
 
 #include "sam.h"
 
+const gpio_pin_standby_configuration GPIO_STANDBY_DEFAULT_CONFIG = {
+    .pull = PULLUP
+};
+
+const gpio_pin_input_configuration GPIO_INPUT_DEFAULT_CONFIG = {
+    .pull = FLOATING,
+    .sample = ONDEMAND
+};
+
+const gpio_pin_input_configuration GPIO_INPUT_PULLUP_CONFIG = {
+    .pull = PULLUP,
+    .sample = ONDEMAND
+};
+
+const gpio_pin_output_configuration GPIO_OUTPUT_DEFAULT_CONFIG = {
+    .input = false,
+    .drive = NORMAL
+};
+
 void GPIO_SetupPinStandby(uint8_t group, uint8_t pin, const gpio_pin_standby_configuration* conf) {
     uint32_t pin_mask = (1 << pin);
     uint8_t pin_cfg = 0;

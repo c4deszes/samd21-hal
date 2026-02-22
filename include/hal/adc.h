@@ -14,13 +14,13 @@ typedef struct adc_read_result_t adc_read_result_t;
 
 typedef void (*adc_result_callback_t)(adc_read_job_t* job, adc_read_result_t* result);
 
-typedef struct {
+typedef struct adc_read_job_t {
     uint8_t muxpos;
     uint8_t muxneg;
     adc_result_callback_t callback;
 } adc_read_job_t;
 
-typedef struct {
+typedef struct adc_read_result_t {
     uint16_t result;
 } adc_read_result_t;
 

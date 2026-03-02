@@ -124,7 +124,7 @@ void ADC_Trigger() {
 }
 
 void ADC_SetMuxPosition(adc_read_job_t* job) {
-    uint32_t inputctrl_masked = ADC_REGS->ADC_INPUTCTRL & (~ADC_INPUTCTRL_MUXPOS_Msk | ~ADC_INPUTCTRL_MUXNEG_Msk);
+    uint32_t inputctrl_masked = ADC_REGS->ADC_INPUTCTRL & (~ADC_INPUTCTRL_MUXPOS_Msk & ~ADC_INPUTCTRL_MUXNEG_Msk);
     ADC_REGS->ADC_INPUTCTRL = inputctrl_masked | ADC_INPUTCTRL_MUXPOS(job->muxpos) | ADC_INPUTCTRL_MUXNEG(job->muxneg);
     ADC_Sync();
 }

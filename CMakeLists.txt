@@ -21,6 +21,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake/application.cmake)
 ################################################################################
 add_library(cmsis INTERFACE)
 target_include_directories(cmsis INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/lib/CMSIS/CMSIS/Core/Include)
+target_compile_definitions(cmsis INTERFACE DISABLE_CMSIS_INIT)
 
 ################################################################################
 # Sources

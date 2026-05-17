@@ -1,31 +1,32 @@
 /*
  * Component description for TC
  *
- * Copyright (c) 2022 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2026 Microchip Technology Inc. and its subsidiaries.
  *
- * Subject to your compliance with these terms, you may use Microchip software and any derivatives
- * exclusively with Microchip products. It is your responsibility to comply with third party license
- * terms applicable to your use of third party software (including open source software) that may
- * accompany Microchip software.
+ * SPDX-License-Identifier: Apache-2.0
  *
- * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY,
- * APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND
- * FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
- * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF
- * MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE FULLEST EXTENT
- * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT
- * EXCEED THE AMOUNT OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
-/* file generated from device description version 2019-11-25T06:52:33Z */
+/*  file generated from device description file (ATDF) version 2020-11-19T13:00:05Z  */
 #ifndef _SAMD21_TC_COMPONENT_H_
 #define _SAMD21_TC_COMPONENT_H_
 
+#include "core_cm0plus.h"
+
 /* ************************************************************************** */
-/*   SOFTWARE API DEFINITION FOR TC                                           */
+/*                       SOFTWARE API DEFINITION FOR TC                       */
 /* ************************************************************************** */
 
 /* -------- TC_CTRLA : (TC Offset: 0x00) (R/W 16) Control A -------- */
@@ -33,33 +34,33 @@
 
 #define TC_CTRLA_SWRST_Pos                    _UINT16_(0)                                          /* (TC_CTRLA) Software Reset Position */
 #define TC_CTRLA_SWRST_Msk                    (_UINT16_(0x1) << TC_CTRLA_SWRST_Pos)                /* (TC_CTRLA) Software Reset Mask */
-#define TC_CTRLA_SWRST(value)                 (TC_CTRLA_SWRST_Msk & (_UINT16_(value) << TC_CTRLA_SWRST_Pos)) /* Assigment of value for SWRST in the TC_CTRLA register */
+#define TC_CTRLA_SWRST(value)                 (TC_CTRLA_SWRST_Msk & (_UINT16_(value) << TC_CTRLA_SWRST_Pos)) /* Assignment of value for SWRST in the TC_CTRLA register */
 #define TC_CTRLA_ENABLE_Pos                   _UINT16_(1)                                          /* (TC_CTRLA) Enable Position */
 #define TC_CTRLA_ENABLE_Msk                   (_UINT16_(0x1) << TC_CTRLA_ENABLE_Pos)               /* (TC_CTRLA) Enable Mask */
-#define TC_CTRLA_ENABLE(value)                (TC_CTRLA_ENABLE_Msk & (_UINT16_(value) << TC_CTRLA_ENABLE_Pos)) /* Assigment of value for ENABLE in the TC_CTRLA register */
+#define TC_CTRLA_ENABLE(value)                (TC_CTRLA_ENABLE_Msk & (_UINT16_(value) << TC_CTRLA_ENABLE_Pos)) /* Assignment of value for ENABLE in the TC_CTRLA register */
 #define TC_CTRLA_MODE_Pos                     _UINT16_(2)                                          /* (TC_CTRLA) TC Mode Position */
 #define TC_CTRLA_MODE_Msk                     (_UINT16_(0x3) << TC_CTRLA_MODE_Pos)                 /* (TC_CTRLA) TC Mode Mask */
-#define TC_CTRLA_MODE(value)                  (TC_CTRLA_MODE_Msk & (_UINT16_(value) << TC_CTRLA_MODE_Pos)) /* Assigment of value for MODE in the TC_CTRLA register */
+#define TC_CTRLA_MODE(value)                  (TC_CTRLA_MODE_Msk & (_UINT16_(value) << TC_CTRLA_MODE_Pos)) /* Assignment of value for MODE in the TC_CTRLA register */
 #define   TC_CTRLA_MODE_COUNT16_Val           _UINT16_(0x0)                                        /* (TC_CTRLA) Counter in 16-bit mode  */
 #define   TC_CTRLA_MODE_COUNT8_Val            _UINT16_(0x1)                                        /* (TC_CTRLA) Counter in 8-bit mode  */
 #define   TC_CTRLA_MODE_COUNT32_Val           _UINT16_(0x2)                                        /* (TC_CTRLA) Counter in 32-bit mode  */
-#define TC_CTRLA_MODE_COUNT16                 (TC_CTRLA_MODE_COUNT16_Val << TC_CTRLA_MODE_Pos)     /* (TC_CTRLA) Counter in 16-bit mode Position  */
-#define TC_CTRLA_MODE_COUNT8                  (TC_CTRLA_MODE_COUNT8_Val << TC_CTRLA_MODE_Pos)      /* (TC_CTRLA) Counter in 8-bit mode Position  */
-#define TC_CTRLA_MODE_COUNT32                 (TC_CTRLA_MODE_COUNT32_Val << TC_CTRLA_MODE_Pos)     /* (TC_CTRLA) Counter in 32-bit mode Position  */
+#define TC_CTRLA_MODE_COUNT16                 (TC_CTRLA_MODE_COUNT16_Val << TC_CTRLA_MODE_Pos)     /* (TC_CTRLA) Counter in 16-bit mode Position */
+#define TC_CTRLA_MODE_COUNT8                  (TC_CTRLA_MODE_COUNT8_Val << TC_CTRLA_MODE_Pos)      /* (TC_CTRLA) Counter in 8-bit mode Position */
+#define TC_CTRLA_MODE_COUNT32                 (TC_CTRLA_MODE_COUNT32_Val << TC_CTRLA_MODE_Pos)     /* (TC_CTRLA) Counter in 32-bit mode Position */
 #define TC_CTRLA_WAVEGEN_Pos                  _UINT16_(5)                                          /* (TC_CTRLA) Waveform Generation Operation Position */
 #define TC_CTRLA_WAVEGEN_Msk                  (_UINT16_(0x3) << TC_CTRLA_WAVEGEN_Pos)              /* (TC_CTRLA) Waveform Generation Operation Mask */
-#define TC_CTRLA_WAVEGEN(value)               (TC_CTRLA_WAVEGEN_Msk & (_UINT16_(value) << TC_CTRLA_WAVEGEN_Pos)) /* Assigment of value for WAVEGEN in the TC_CTRLA register */
+#define TC_CTRLA_WAVEGEN(value)               (TC_CTRLA_WAVEGEN_Msk & (_UINT16_(value) << TC_CTRLA_WAVEGEN_Pos)) /* Assignment of value for WAVEGEN in the TC_CTRLA register */
 #define   TC_CTRLA_WAVEGEN_NFRQ_Val           _UINT16_(0x0)                                        /* (TC_CTRLA)   */
 #define   TC_CTRLA_WAVEGEN_MFRQ_Val           _UINT16_(0x1)                                        /* (TC_CTRLA)   */
 #define   TC_CTRLA_WAVEGEN_NPWM_Val           _UINT16_(0x2)                                        /* (TC_CTRLA)   */
 #define   TC_CTRLA_WAVEGEN_MPWM_Val           _UINT16_(0x3)                                        /* (TC_CTRLA)   */
-#define TC_CTRLA_WAVEGEN_NFRQ                 (TC_CTRLA_WAVEGEN_NFRQ_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position  */
-#define TC_CTRLA_WAVEGEN_MFRQ                 (TC_CTRLA_WAVEGEN_MFRQ_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position  */
-#define TC_CTRLA_WAVEGEN_NPWM                 (TC_CTRLA_WAVEGEN_NPWM_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position  */
-#define TC_CTRLA_WAVEGEN_MPWM                 (TC_CTRLA_WAVEGEN_MPWM_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position  */
+#define TC_CTRLA_WAVEGEN_NFRQ                 (TC_CTRLA_WAVEGEN_NFRQ_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position */
+#define TC_CTRLA_WAVEGEN_MFRQ                 (TC_CTRLA_WAVEGEN_MFRQ_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position */
+#define TC_CTRLA_WAVEGEN_NPWM                 (TC_CTRLA_WAVEGEN_NPWM_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position */
+#define TC_CTRLA_WAVEGEN_MPWM                 (TC_CTRLA_WAVEGEN_MPWM_Val << TC_CTRLA_WAVEGEN_Pos)  /* (TC_CTRLA)  Position */
 #define TC_CTRLA_PRESCALER_Pos                _UINT16_(8)                                          /* (TC_CTRLA) Prescaler Position */
 #define TC_CTRLA_PRESCALER_Msk                (_UINT16_(0x7) << TC_CTRLA_PRESCALER_Pos)            /* (TC_CTRLA) Prescaler Mask */
-#define TC_CTRLA_PRESCALER(value)             (TC_CTRLA_PRESCALER_Msk & (_UINT16_(value) << TC_CTRLA_PRESCALER_Pos)) /* Assigment of value for PRESCALER in the TC_CTRLA register */
+#define TC_CTRLA_PRESCALER(value)             (TC_CTRLA_PRESCALER_Msk & (_UINT16_(value) << TC_CTRLA_PRESCALER_Pos)) /* Assignment of value for PRESCALER in the TC_CTRLA register */
 #define   TC_CTRLA_PRESCALER_DIV1_Val         _UINT16_(0x0)                                        /* (TC_CTRLA) Prescaler: GCLK_TC  */
 #define   TC_CTRLA_PRESCALER_DIV2_Val         _UINT16_(0x1)                                        /* (TC_CTRLA) Prescaler: GCLK_TC/2  */
 #define   TC_CTRLA_PRESCALER_DIV4_Val         _UINT16_(0x2)                                        /* (TC_CTRLA) Prescaler: GCLK_TC/4  */
@@ -68,26 +69,26 @@
 #define   TC_CTRLA_PRESCALER_DIV64_Val        _UINT16_(0x5)                                        /* (TC_CTRLA) Prescaler: GCLK_TC/64  */
 #define   TC_CTRLA_PRESCALER_DIV256_Val       _UINT16_(0x6)                                        /* (TC_CTRLA) Prescaler: GCLK_TC/256  */
 #define   TC_CTRLA_PRESCALER_DIV1024_Val      _UINT16_(0x7)                                        /* (TC_CTRLA) Prescaler: GCLK_TC/1024  */
-#define TC_CTRLA_PRESCALER_DIV1               (TC_CTRLA_PRESCALER_DIV1_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC Position  */
-#define TC_CTRLA_PRESCALER_DIV2               (TC_CTRLA_PRESCALER_DIV2_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/2 Position  */
-#define TC_CTRLA_PRESCALER_DIV4               (TC_CTRLA_PRESCALER_DIV4_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/4 Position  */
-#define TC_CTRLA_PRESCALER_DIV8               (TC_CTRLA_PRESCALER_DIV8_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/8 Position  */
-#define TC_CTRLA_PRESCALER_DIV16              (TC_CTRLA_PRESCALER_DIV16_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/16 Position  */
-#define TC_CTRLA_PRESCALER_DIV64              (TC_CTRLA_PRESCALER_DIV64_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/64 Position  */
-#define TC_CTRLA_PRESCALER_DIV256             (TC_CTRLA_PRESCALER_DIV256_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/256 Position  */
-#define TC_CTRLA_PRESCALER_DIV1024            (TC_CTRLA_PRESCALER_DIV1024_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/1024 Position  */
+#define TC_CTRLA_PRESCALER_DIV1               (TC_CTRLA_PRESCALER_DIV1_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC Position */
+#define TC_CTRLA_PRESCALER_DIV2               (TC_CTRLA_PRESCALER_DIV2_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/2 Position */
+#define TC_CTRLA_PRESCALER_DIV4               (TC_CTRLA_PRESCALER_DIV4_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/4 Position */
+#define TC_CTRLA_PRESCALER_DIV8               (TC_CTRLA_PRESCALER_DIV8_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/8 Position */
+#define TC_CTRLA_PRESCALER_DIV16              (TC_CTRLA_PRESCALER_DIV16_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/16 Position */
+#define TC_CTRLA_PRESCALER_DIV64              (TC_CTRLA_PRESCALER_DIV64_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/64 Position */
+#define TC_CTRLA_PRESCALER_DIV256             (TC_CTRLA_PRESCALER_DIV256_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/256 Position */
+#define TC_CTRLA_PRESCALER_DIV1024            (TC_CTRLA_PRESCALER_DIV1024_Val << TC_CTRLA_PRESCALER_Pos) /* (TC_CTRLA) Prescaler: GCLK_TC/1024 Position */
 #define TC_CTRLA_RUNSTDBY_Pos                 _UINT16_(11)                                         /* (TC_CTRLA) Run in Standby Position */
 #define TC_CTRLA_RUNSTDBY_Msk                 (_UINT16_(0x1) << TC_CTRLA_RUNSTDBY_Pos)             /* (TC_CTRLA) Run in Standby Mask */
-#define TC_CTRLA_RUNSTDBY(value)              (TC_CTRLA_RUNSTDBY_Msk & (_UINT16_(value) << TC_CTRLA_RUNSTDBY_Pos)) /* Assigment of value for RUNSTDBY in the TC_CTRLA register */
+#define TC_CTRLA_RUNSTDBY(value)              (TC_CTRLA_RUNSTDBY_Msk & (_UINT16_(value) << TC_CTRLA_RUNSTDBY_Pos)) /* Assignment of value for RUNSTDBY in the TC_CTRLA register */
 #define TC_CTRLA_PRESCSYNC_Pos                _UINT16_(12)                                         /* (TC_CTRLA) Prescaler and Counter Synchronization Position */
 #define TC_CTRLA_PRESCSYNC_Msk                (_UINT16_(0x3) << TC_CTRLA_PRESCSYNC_Pos)            /* (TC_CTRLA) Prescaler and Counter Synchronization Mask */
-#define TC_CTRLA_PRESCSYNC(value)             (TC_CTRLA_PRESCSYNC_Msk & (_UINT16_(value) << TC_CTRLA_PRESCSYNC_Pos)) /* Assigment of value for PRESCSYNC in the TC_CTRLA register */
+#define TC_CTRLA_PRESCSYNC(value)             (TC_CTRLA_PRESCSYNC_Msk & (_UINT16_(value) << TC_CTRLA_PRESCSYNC_Pos)) /* Assignment of value for PRESCSYNC in the TC_CTRLA register */
 #define   TC_CTRLA_PRESCSYNC_GCLK_Val         _UINT16_(0x0)                                        /* (TC_CTRLA) Reload or reset the counter on next generic clock  */
 #define   TC_CTRLA_PRESCSYNC_PRESC_Val        _UINT16_(0x1)                                        /* (TC_CTRLA) Reload or reset the counter on next prescaler clock  */
 #define   TC_CTRLA_PRESCSYNC_RESYNC_Val       _UINT16_(0x2)                                        /* (TC_CTRLA) Reload or reset the counter on next generic clock. Reset the prescaler counter  */
-#define TC_CTRLA_PRESCSYNC_GCLK               (TC_CTRLA_PRESCSYNC_GCLK_Val << TC_CTRLA_PRESCSYNC_Pos) /* (TC_CTRLA) Reload or reset the counter on next generic clock Position  */
-#define TC_CTRLA_PRESCSYNC_PRESC              (TC_CTRLA_PRESCSYNC_PRESC_Val << TC_CTRLA_PRESCSYNC_Pos) /* (TC_CTRLA) Reload or reset the counter on next prescaler clock Position  */
-#define TC_CTRLA_PRESCSYNC_RESYNC             (TC_CTRLA_PRESCSYNC_RESYNC_Val << TC_CTRLA_PRESCSYNC_Pos) /* (TC_CTRLA) Reload or reset the counter on next generic clock. Reset the prescaler counter Position  */
+#define TC_CTRLA_PRESCSYNC_GCLK               (TC_CTRLA_PRESCSYNC_GCLK_Val << TC_CTRLA_PRESCSYNC_Pos) /* (TC_CTRLA) Reload or reset the counter on next generic clock Position */
+#define TC_CTRLA_PRESCSYNC_PRESC              (TC_CTRLA_PRESCSYNC_PRESC_Val << TC_CTRLA_PRESCSYNC_Pos) /* (TC_CTRLA) Reload or reset the counter on next prescaler clock Position */
+#define TC_CTRLA_PRESCSYNC_RESYNC             (TC_CTRLA_PRESCSYNC_RESYNC_Val << TC_CTRLA_PRESCSYNC_Pos) /* (TC_CTRLA) Reload or reset the counter on next generic clock. Reset the prescaler counter Position */
 #define TC_CTRLA_Msk                          _UINT16_(0x3F6F)                                     /* (TC_CTRLA) Register Mask  */
 
 
@@ -96,13 +97,13 @@
 
 #define TC_READREQ_ADDR_Pos                   _UINT16_(0)                                          /* (TC_READREQ) Address Position */
 #define TC_READREQ_ADDR_Msk                   (_UINT16_(0x1F) << TC_READREQ_ADDR_Pos)              /* (TC_READREQ) Address Mask */
-#define TC_READREQ_ADDR(value)                (TC_READREQ_ADDR_Msk & (_UINT16_(value) << TC_READREQ_ADDR_Pos)) /* Assigment of value for ADDR in the TC_READREQ register */
+#define TC_READREQ_ADDR(value)                (TC_READREQ_ADDR_Msk & (_UINT16_(value) << TC_READREQ_ADDR_Pos)) /* Assignment of value for ADDR in the TC_READREQ register */
 #define TC_READREQ_RCONT_Pos                  _UINT16_(14)                                         /* (TC_READREQ) Read Continuously Position */
 #define TC_READREQ_RCONT_Msk                  (_UINT16_(0x1) << TC_READREQ_RCONT_Pos)              /* (TC_READREQ) Read Continuously Mask */
-#define TC_READREQ_RCONT(value)               (TC_READREQ_RCONT_Msk & (_UINT16_(value) << TC_READREQ_RCONT_Pos)) /* Assigment of value for RCONT in the TC_READREQ register */
+#define TC_READREQ_RCONT(value)               (TC_READREQ_RCONT_Msk & (_UINT16_(value) << TC_READREQ_RCONT_Pos)) /* Assignment of value for RCONT in the TC_READREQ register */
 #define TC_READREQ_RREQ_Pos                   _UINT16_(15)                                         /* (TC_READREQ) Read Request Position */
 #define TC_READREQ_RREQ_Msk                   (_UINT16_(0x1) << TC_READREQ_RREQ_Pos)               /* (TC_READREQ) Read Request Mask */
-#define TC_READREQ_RREQ(value)                (TC_READREQ_RREQ_Msk & (_UINT16_(value) << TC_READREQ_RREQ_Pos)) /* Assigment of value for RREQ in the TC_READREQ register */
+#define TC_READREQ_RREQ(value)                (TC_READREQ_RREQ_Msk & (_UINT16_(value) << TC_READREQ_RREQ_Pos)) /* Assignment of value for RREQ in the TC_READREQ register */
 #define TC_READREQ_Msk                        _UINT16_(0xC01F)                                     /* (TC_READREQ) Register Mask  */
 
 
@@ -111,19 +112,19 @@
 
 #define TC_CTRLBCLR_DIR_Pos                   _UINT8_(0)                                           /* (TC_CTRLBCLR) Counter Direction Position */
 #define TC_CTRLBCLR_DIR_Msk                   (_UINT8_(0x1) << TC_CTRLBCLR_DIR_Pos)                /* (TC_CTRLBCLR) Counter Direction Mask */
-#define TC_CTRLBCLR_DIR(value)                (TC_CTRLBCLR_DIR_Msk & (_UINT8_(value) << TC_CTRLBCLR_DIR_Pos)) /* Assigment of value for DIR in the TC_CTRLBCLR register */
+#define TC_CTRLBCLR_DIR(value)                (TC_CTRLBCLR_DIR_Msk & (_UINT8_(value) << TC_CTRLBCLR_DIR_Pos)) /* Assignment of value for DIR in the TC_CTRLBCLR register */
 #define TC_CTRLBCLR_ONESHOT_Pos               _UINT8_(2)                                           /* (TC_CTRLBCLR) One-Shot Position */
 #define TC_CTRLBCLR_ONESHOT_Msk               (_UINT8_(0x1) << TC_CTRLBCLR_ONESHOT_Pos)            /* (TC_CTRLBCLR) One-Shot Mask */
-#define TC_CTRLBCLR_ONESHOT(value)            (TC_CTRLBCLR_ONESHOT_Msk & (_UINT8_(value) << TC_CTRLBCLR_ONESHOT_Pos)) /* Assigment of value for ONESHOT in the TC_CTRLBCLR register */
+#define TC_CTRLBCLR_ONESHOT(value)            (TC_CTRLBCLR_ONESHOT_Msk & (_UINT8_(value) << TC_CTRLBCLR_ONESHOT_Pos)) /* Assignment of value for ONESHOT in the TC_CTRLBCLR register */
 #define TC_CTRLBCLR_CMD_Pos                   _UINT8_(6)                                           /* (TC_CTRLBCLR) Command Position */
 #define TC_CTRLBCLR_CMD_Msk                   (_UINT8_(0x3) << TC_CTRLBCLR_CMD_Pos)                /* (TC_CTRLBCLR) Command Mask */
-#define TC_CTRLBCLR_CMD(value)                (TC_CTRLBCLR_CMD_Msk & (_UINT8_(value) << TC_CTRLBCLR_CMD_Pos)) /* Assigment of value for CMD in the TC_CTRLBCLR register */
+#define TC_CTRLBCLR_CMD(value)                (TC_CTRLBCLR_CMD_Msk & (_UINT8_(value) << TC_CTRLBCLR_CMD_Pos)) /* Assignment of value for CMD in the TC_CTRLBCLR register */
 #define   TC_CTRLBCLR_CMD_NONE_Val            _UINT8_(0x0)                                         /* (TC_CTRLBCLR) No action  */
 #define   TC_CTRLBCLR_CMD_RETRIGGER_Val       _UINT8_(0x1)                                         /* (TC_CTRLBCLR) Force a start, restart or retrigger  */
 #define   TC_CTRLBCLR_CMD_STOP_Val            _UINT8_(0x2)                                         /* (TC_CTRLBCLR) Force a stop  */
-#define TC_CTRLBCLR_CMD_NONE                  (TC_CTRLBCLR_CMD_NONE_Val << TC_CTRLBCLR_CMD_Pos)    /* (TC_CTRLBCLR) No action Position  */
-#define TC_CTRLBCLR_CMD_RETRIGGER             (TC_CTRLBCLR_CMD_RETRIGGER_Val << TC_CTRLBCLR_CMD_Pos) /* (TC_CTRLBCLR) Force a start, restart or retrigger Position  */
-#define TC_CTRLBCLR_CMD_STOP                  (TC_CTRLBCLR_CMD_STOP_Val << TC_CTRLBCLR_CMD_Pos)    /* (TC_CTRLBCLR) Force a stop Position  */
+#define TC_CTRLBCLR_CMD_NONE                  (TC_CTRLBCLR_CMD_NONE_Val << TC_CTRLBCLR_CMD_Pos)    /* (TC_CTRLBCLR) No action Position */
+#define TC_CTRLBCLR_CMD_RETRIGGER             (TC_CTRLBCLR_CMD_RETRIGGER_Val << TC_CTRLBCLR_CMD_Pos) /* (TC_CTRLBCLR) Force a start, restart or retrigger Position */
+#define TC_CTRLBCLR_CMD_STOP                  (TC_CTRLBCLR_CMD_STOP_Val << TC_CTRLBCLR_CMD_Pos)    /* (TC_CTRLBCLR) Force a stop Position */
 #define TC_CTRLBCLR_Msk                       _UINT8_(0xC5)                                        /* (TC_CTRLBCLR) Register Mask  */
 
 
@@ -132,19 +133,19 @@
 
 #define TC_CTRLBSET_DIR_Pos                   _UINT8_(0)                                           /* (TC_CTRLBSET) Counter Direction Position */
 #define TC_CTRLBSET_DIR_Msk                   (_UINT8_(0x1) << TC_CTRLBSET_DIR_Pos)                /* (TC_CTRLBSET) Counter Direction Mask */
-#define TC_CTRLBSET_DIR(value)                (TC_CTRLBSET_DIR_Msk & (_UINT8_(value) << TC_CTRLBSET_DIR_Pos)) /* Assigment of value for DIR in the TC_CTRLBSET register */
+#define TC_CTRLBSET_DIR(value)                (TC_CTRLBSET_DIR_Msk & (_UINT8_(value) << TC_CTRLBSET_DIR_Pos)) /* Assignment of value for DIR in the TC_CTRLBSET register */
 #define TC_CTRLBSET_ONESHOT_Pos               _UINT8_(2)                                           /* (TC_CTRLBSET) One-Shot Position */
 #define TC_CTRLBSET_ONESHOT_Msk               (_UINT8_(0x1) << TC_CTRLBSET_ONESHOT_Pos)            /* (TC_CTRLBSET) One-Shot Mask */
-#define TC_CTRLBSET_ONESHOT(value)            (TC_CTRLBSET_ONESHOT_Msk & (_UINT8_(value) << TC_CTRLBSET_ONESHOT_Pos)) /* Assigment of value for ONESHOT in the TC_CTRLBSET register */
+#define TC_CTRLBSET_ONESHOT(value)            (TC_CTRLBSET_ONESHOT_Msk & (_UINT8_(value) << TC_CTRLBSET_ONESHOT_Pos)) /* Assignment of value for ONESHOT in the TC_CTRLBSET register */
 #define TC_CTRLBSET_CMD_Pos                   _UINT8_(6)                                           /* (TC_CTRLBSET) Command Position */
 #define TC_CTRLBSET_CMD_Msk                   (_UINT8_(0x3) << TC_CTRLBSET_CMD_Pos)                /* (TC_CTRLBSET) Command Mask */
-#define TC_CTRLBSET_CMD(value)                (TC_CTRLBSET_CMD_Msk & (_UINT8_(value) << TC_CTRLBSET_CMD_Pos)) /* Assigment of value for CMD in the TC_CTRLBSET register */
+#define TC_CTRLBSET_CMD(value)                (TC_CTRLBSET_CMD_Msk & (_UINT8_(value) << TC_CTRLBSET_CMD_Pos)) /* Assignment of value for CMD in the TC_CTRLBSET register */
 #define   TC_CTRLBSET_CMD_NONE_Val            _UINT8_(0x0)                                         /* (TC_CTRLBSET) No action  */
 #define   TC_CTRLBSET_CMD_RETRIGGER_Val       _UINT8_(0x1)                                         /* (TC_CTRLBSET) Force a start, restart or retrigger  */
 #define   TC_CTRLBSET_CMD_STOP_Val            _UINT8_(0x2)                                         /* (TC_CTRLBSET) Force a stop  */
-#define TC_CTRLBSET_CMD_NONE                  (TC_CTRLBSET_CMD_NONE_Val << TC_CTRLBSET_CMD_Pos)    /* (TC_CTRLBSET) No action Position  */
-#define TC_CTRLBSET_CMD_RETRIGGER             (TC_CTRLBSET_CMD_RETRIGGER_Val << TC_CTRLBSET_CMD_Pos) /* (TC_CTRLBSET) Force a start, restart or retrigger Position  */
-#define TC_CTRLBSET_CMD_STOP                  (TC_CTRLBSET_CMD_STOP_Val << TC_CTRLBSET_CMD_Pos)    /* (TC_CTRLBSET) Force a stop Position  */
+#define TC_CTRLBSET_CMD_NONE                  (TC_CTRLBSET_CMD_NONE_Val << TC_CTRLBSET_CMD_Pos)    /* (TC_CTRLBSET) No action Position */
+#define TC_CTRLBSET_CMD_RETRIGGER             (TC_CTRLBSET_CMD_RETRIGGER_Val << TC_CTRLBSET_CMD_Pos) /* (TC_CTRLBSET) Force a start, restart or retrigger Position */
+#define TC_CTRLBSET_CMD_STOP                  (TC_CTRLBSET_CMD_STOP_Val << TC_CTRLBSET_CMD_Pos)    /* (TC_CTRLBSET) Force a stop Position */
 #define TC_CTRLBSET_Msk                       _UINT8_(0xC5)                                        /* (TC_CTRLBSET) Register Mask  */
 
 
@@ -153,16 +154,16 @@
 
 #define TC_CTRLC_INVEN0_Pos                   _UINT8_(0)                                           /* (TC_CTRLC) Output Waveform 0 Invert Enable Position */
 #define TC_CTRLC_INVEN0_Msk                   (_UINT8_(0x1) << TC_CTRLC_INVEN0_Pos)                /* (TC_CTRLC) Output Waveform 0 Invert Enable Mask */
-#define TC_CTRLC_INVEN0(value)                (TC_CTRLC_INVEN0_Msk & (_UINT8_(value) << TC_CTRLC_INVEN0_Pos)) /* Assigment of value for INVEN0 in the TC_CTRLC register */
+#define TC_CTRLC_INVEN0(value)                (TC_CTRLC_INVEN0_Msk & (_UINT8_(value) << TC_CTRLC_INVEN0_Pos)) /* Assignment of value for INVEN0 in the TC_CTRLC register */
 #define TC_CTRLC_INVEN1_Pos                   _UINT8_(1)                                           /* (TC_CTRLC) Output Waveform 1 Invert Enable Position */
 #define TC_CTRLC_INVEN1_Msk                   (_UINT8_(0x1) << TC_CTRLC_INVEN1_Pos)                /* (TC_CTRLC) Output Waveform 1 Invert Enable Mask */
-#define TC_CTRLC_INVEN1(value)                (TC_CTRLC_INVEN1_Msk & (_UINT8_(value) << TC_CTRLC_INVEN1_Pos)) /* Assigment of value for INVEN1 in the TC_CTRLC register */
+#define TC_CTRLC_INVEN1(value)                (TC_CTRLC_INVEN1_Msk & (_UINT8_(value) << TC_CTRLC_INVEN1_Pos)) /* Assignment of value for INVEN1 in the TC_CTRLC register */
 #define TC_CTRLC_CPTEN0_Pos                   _UINT8_(4)                                           /* (TC_CTRLC) Capture Channel 0 Enable Position */
 #define TC_CTRLC_CPTEN0_Msk                   (_UINT8_(0x1) << TC_CTRLC_CPTEN0_Pos)                /* (TC_CTRLC) Capture Channel 0 Enable Mask */
-#define TC_CTRLC_CPTEN0(value)                (TC_CTRLC_CPTEN0_Msk & (_UINT8_(value) << TC_CTRLC_CPTEN0_Pos)) /* Assigment of value for CPTEN0 in the TC_CTRLC register */
+#define TC_CTRLC_CPTEN0(value)                (TC_CTRLC_CPTEN0_Msk & (_UINT8_(value) << TC_CTRLC_CPTEN0_Pos)) /* Assignment of value for CPTEN0 in the TC_CTRLC register */
 #define TC_CTRLC_CPTEN1_Pos                   _UINT8_(5)                                           /* (TC_CTRLC) Capture Channel 1 Enable Position */
 #define TC_CTRLC_CPTEN1_Msk                   (_UINT8_(0x1) << TC_CTRLC_CPTEN1_Pos)                /* (TC_CTRLC) Capture Channel 1 Enable Mask */
-#define TC_CTRLC_CPTEN1(value)                (TC_CTRLC_CPTEN1_Msk & (_UINT8_(value) << TC_CTRLC_CPTEN1_Pos)) /* Assigment of value for CPTEN1 in the TC_CTRLC register */
+#define TC_CTRLC_CPTEN1(value)                (TC_CTRLC_CPTEN1_Msk & (_UINT8_(value) << TC_CTRLC_CPTEN1_Pos)) /* Assignment of value for CPTEN1 in the TC_CTRLC register */
 #define TC_CTRLC_Msk                          _UINT8_(0x33)                                        /* (TC_CTRLC) Register Mask  */
 
 #define TC_CTRLC_INVEN_Pos                    _UINT8_(0)                                           /* (TC_CTRLC Position) Output Waveform x Invert Enable */
@@ -177,7 +178,7 @@
 
 #define TC_DBGCTRL_DBGRUN_Pos                 _UINT8_(0)                                           /* (TC_DBGCTRL) Debug Run Mode Position */
 #define TC_DBGCTRL_DBGRUN_Msk                 (_UINT8_(0x1) << TC_DBGCTRL_DBGRUN_Pos)              /* (TC_DBGCTRL) Debug Run Mode Mask */
-#define TC_DBGCTRL_DBGRUN(value)              (TC_DBGCTRL_DBGRUN_Msk & (_UINT8_(value) << TC_DBGCTRL_DBGRUN_Pos)) /* Assigment of value for DBGRUN in the TC_DBGCTRL register */
+#define TC_DBGCTRL_DBGRUN(value)              (TC_DBGCTRL_DBGRUN_Msk & (_UINT8_(value) << TC_DBGCTRL_DBGRUN_Pos)) /* Assignment of value for DBGRUN in the TC_DBGCTRL register */
 #define TC_DBGCTRL_Msk                        _UINT8_(0x01)                                        /* (TC_DBGCTRL) Register Mask  */
 
 
@@ -186,34 +187,34 @@
 
 #define TC_EVCTRL_EVACT_Pos                   _UINT16_(0)                                          /* (TC_EVCTRL) Event Action Position */
 #define TC_EVCTRL_EVACT_Msk                   (_UINT16_(0x7) << TC_EVCTRL_EVACT_Pos)               /* (TC_EVCTRL) Event Action Mask */
-#define TC_EVCTRL_EVACT(value)                (TC_EVCTRL_EVACT_Msk & (_UINT16_(value) << TC_EVCTRL_EVACT_Pos)) /* Assigment of value for EVACT in the TC_EVCTRL register */
+#define TC_EVCTRL_EVACT(value)                (TC_EVCTRL_EVACT_Msk & (_UINT16_(value) << TC_EVCTRL_EVACT_Pos)) /* Assignment of value for EVACT in the TC_EVCTRL register */
 #define   TC_EVCTRL_EVACT_OFF_Val             _UINT16_(0x0)                                        /* (TC_EVCTRL) Event action disabled  */
 #define   TC_EVCTRL_EVACT_RETRIGGER_Val       _UINT16_(0x1)                                        /* (TC_EVCTRL) Start, restart or retrigger TC on event  */
 #define   TC_EVCTRL_EVACT_COUNT_Val           _UINT16_(0x2)                                        /* (TC_EVCTRL) Count on event  */
 #define   TC_EVCTRL_EVACT_START_Val           _UINT16_(0x3)                                        /* (TC_EVCTRL) Start TC on event  */
 #define   TC_EVCTRL_EVACT_PPW_Val             _UINT16_(0x5)                                        /* (TC_EVCTRL) Period captured in CC0, pulse width in CC1  */
 #define   TC_EVCTRL_EVACT_PWP_Val             _UINT16_(0x6)                                        /* (TC_EVCTRL) Period captured in CC1, pulse width in CC0  */
-#define TC_EVCTRL_EVACT_OFF                   (TC_EVCTRL_EVACT_OFF_Val << TC_EVCTRL_EVACT_Pos)     /* (TC_EVCTRL) Event action disabled Position  */
-#define TC_EVCTRL_EVACT_RETRIGGER             (TC_EVCTRL_EVACT_RETRIGGER_Val << TC_EVCTRL_EVACT_Pos) /* (TC_EVCTRL) Start, restart or retrigger TC on event Position  */
-#define TC_EVCTRL_EVACT_COUNT                 (TC_EVCTRL_EVACT_COUNT_Val << TC_EVCTRL_EVACT_Pos)   /* (TC_EVCTRL) Count on event Position  */
-#define TC_EVCTRL_EVACT_START                 (TC_EVCTRL_EVACT_START_Val << TC_EVCTRL_EVACT_Pos)   /* (TC_EVCTRL) Start TC on event Position  */
-#define TC_EVCTRL_EVACT_PPW                   (TC_EVCTRL_EVACT_PPW_Val << TC_EVCTRL_EVACT_Pos)     /* (TC_EVCTRL) Period captured in CC0, pulse width in CC1 Position  */
-#define TC_EVCTRL_EVACT_PWP                   (TC_EVCTRL_EVACT_PWP_Val << TC_EVCTRL_EVACT_Pos)     /* (TC_EVCTRL) Period captured in CC1, pulse width in CC0 Position  */
+#define TC_EVCTRL_EVACT_OFF                   (TC_EVCTRL_EVACT_OFF_Val << TC_EVCTRL_EVACT_Pos)     /* (TC_EVCTRL) Event action disabled Position */
+#define TC_EVCTRL_EVACT_RETRIGGER             (TC_EVCTRL_EVACT_RETRIGGER_Val << TC_EVCTRL_EVACT_Pos) /* (TC_EVCTRL) Start, restart or retrigger TC on event Position */
+#define TC_EVCTRL_EVACT_COUNT                 (TC_EVCTRL_EVACT_COUNT_Val << TC_EVCTRL_EVACT_Pos)   /* (TC_EVCTRL) Count on event Position */
+#define TC_EVCTRL_EVACT_START                 (TC_EVCTRL_EVACT_START_Val << TC_EVCTRL_EVACT_Pos)   /* (TC_EVCTRL) Start TC on event Position */
+#define TC_EVCTRL_EVACT_PPW                   (TC_EVCTRL_EVACT_PPW_Val << TC_EVCTRL_EVACT_Pos)     /* (TC_EVCTRL) Period captured in CC0, pulse width in CC1 Position */
+#define TC_EVCTRL_EVACT_PWP                   (TC_EVCTRL_EVACT_PWP_Val << TC_EVCTRL_EVACT_Pos)     /* (TC_EVCTRL) Period captured in CC1, pulse width in CC0 Position */
 #define TC_EVCTRL_TCINV_Pos                   _UINT16_(4)                                          /* (TC_EVCTRL) TC Inverted Event Input Position */
 #define TC_EVCTRL_TCINV_Msk                   (_UINT16_(0x1) << TC_EVCTRL_TCINV_Pos)               /* (TC_EVCTRL) TC Inverted Event Input Mask */
-#define TC_EVCTRL_TCINV(value)                (TC_EVCTRL_TCINV_Msk & (_UINT16_(value) << TC_EVCTRL_TCINV_Pos)) /* Assigment of value for TCINV in the TC_EVCTRL register */
+#define TC_EVCTRL_TCINV(value)                (TC_EVCTRL_TCINV_Msk & (_UINT16_(value) << TC_EVCTRL_TCINV_Pos)) /* Assignment of value for TCINV in the TC_EVCTRL register */
 #define TC_EVCTRL_TCEI_Pos                    _UINT16_(5)                                          /* (TC_EVCTRL) TC Event Input Position */
 #define TC_EVCTRL_TCEI_Msk                    (_UINT16_(0x1) << TC_EVCTRL_TCEI_Pos)                /* (TC_EVCTRL) TC Event Input Mask */
-#define TC_EVCTRL_TCEI(value)                 (TC_EVCTRL_TCEI_Msk & (_UINT16_(value) << TC_EVCTRL_TCEI_Pos)) /* Assigment of value for TCEI in the TC_EVCTRL register */
+#define TC_EVCTRL_TCEI(value)                 (TC_EVCTRL_TCEI_Msk & (_UINT16_(value) << TC_EVCTRL_TCEI_Pos)) /* Assignment of value for TCEI in the TC_EVCTRL register */
 #define TC_EVCTRL_OVFEO_Pos                   _UINT16_(8)                                          /* (TC_EVCTRL) Overflow/Underflow Event Output Enable Position */
 #define TC_EVCTRL_OVFEO_Msk                   (_UINT16_(0x1) << TC_EVCTRL_OVFEO_Pos)               /* (TC_EVCTRL) Overflow/Underflow Event Output Enable Mask */
-#define TC_EVCTRL_OVFEO(value)                (TC_EVCTRL_OVFEO_Msk & (_UINT16_(value) << TC_EVCTRL_OVFEO_Pos)) /* Assigment of value for OVFEO in the TC_EVCTRL register */
+#define TC_EVCTRL_OVFEO(value)                (TC_EVCTRL_OVFEO_Msk & (_UINT16_(value) << TC_EVCTRL_OVFEO_Pos)) /* Assignment of value for OVFEO in the TC_EVCTRL register */
 #define TC_EVCTRL_MCEO0_Pos                   _UINT16_(12)                                         /* (TC_EVCTRL) Match or Capture Channel 0 Event Output Enable Position */
 #define TC_EVCTRL_MCEO0_Msk                   (_UINT16_(0x1) << TC_EVCTRL_MCEO0_Pos)               /* (TC_EVCTRL) Match or Capture Channel 0 Event Output Enable Mask */
-#define TC_EVCTRL_MCEO0(value)                (TC_EVCTRL_MCEO0_Msk & (_UINT16_(value) << TC_EVCTRL_MCEO0_Pos)) /* Assigment of value for MCEO0 in the TC_EVCTRL register */
+#define TC_EVCTRL_MCEO0(value)                (TC_EVCTRL_MCEO0_Msk & (_UINT16_(value) << TC_EVCTRL_MCEO0_Pos)) /* Assignment of value for MCEO0 in the TC_EVCTRL register */
 #define TC_EVCTRL_MCEO1_Pos                   _UINT16_(13)                                         /* (TC_EVCTRL) Match or Capture Channel 1 Event Output Enable Position */
 #define TC_EVCTRL_MCEO1_Msk                   (_UINT16_(0x1) << TC_EVCTRL_MCEO1_Pos)               /* (TC_EVCTRL) Match or Capture Channel 1 Event Output Enable Mask */
-#define TC_EVCTRL_MCEO1(value)                (TC_EVCTRL_MCEO1_Msk & (_UINT16_(value) << TC_EVCTRL_MCEO1_Pos)) /* Assigment of value for MCEO1 in the TC_EVCTRL register */
+#define TC_EVCTRL_MCEO1(value)                (TC_EVCTRL_MCEO1_Msk & (_UINT16_(value) << TC_EVCTRL_MCEO1_Pos)) /* Assignment of value for MCEO1 in the TC_EVCTRL register */
 #define TC_EVCTRL_Msk                         _UINT16_(0x3137)                                     /* (TC_EVCTRL) Register Mask  */
 
 #define TC_EVCTRL_MCEO_Pos                    _UINT16_(12)                                         /* (TC_EVCTRL Position) Match or Capture Channel x Event Output Enable */
@@ -225,19 +226,19 @@
 
 #define TC_INTENCLR_OVF_Pos                   _UINT8_(0)                                           /* (TC_INTENCLR) Overflow Interrupt Enable Position */
 #define TC_INTENCLR_OVF_Msk                   (_UINT8_(0x1) << TC_INTENCLR_OVF_Pos)                /* (TC_INTENCLR) Overflow Interrupt Enable Mask */
-#define TC_INTENCLR_OVF(value)                (TC_INTENCLR_OVF_Msk & (_UINT8_(value) << TC_INTENCLR_OVF_Pos)) /* Assigment of value for OVF in the TC_INTENCLR register */
+#define TC_INTENCLR_OVF(value)                (TC_INTENCLR_OVF_Msk & (_UINT8_(value) << TC_INTENCLR_OVF_Pos)) /* Assignment of value for OVF in the TC_INTENCLR register */
 #define TC_INTENCLR_ERR_Pos                   _UINT8_(1)                                           /* (TC_INTENCLR) Error Interrupt Enable Position */
 #define TC_INTENCLR_ERR_Msk                   (_UINT8_(0x1) << TC_INTENCLR_ERR_Pos)                /* (TC_INTENCLR) Error Interrupt Enable Mask */
-#define TC_INTENCLR_ERR(value)                (TC_INTENCLR_ERR_Msk & (_UINT8_(value) << TC_INTENCLR_ERR_Pos)) /* Assigment of value for ERR in the TC_INTENCLR register */
+#define TC_INTENCLR_ERR(value)                (TC_INTENCLR_ERR_Msk & (_UINT8_(value) << TC_INTENCLR_ERR_Pos)) /* Assignment of value for ERR in the TC_INTENCLR register */
 #define TC_INTENCLR_SYNCRDY_Pos               _UINT8_(3)                                           /* (TC_INTENCLR) Synchronization Ready Interrupt Enable Position */
 #define TC_INTENCLR_SYNCRDY_Msk               (_UINT8_(0x1) << TC_INTENCLR_SYNCRDY_Pos)            /* (TC_INTENCLR) Synchronization Ready Interrupt Enable Mask */
-#define TC_INTENCLR_SYNCRDY(value)            (TC_INTENCLR_SYNCRDY_Msk & (_UINT8_(value) << TC_INTENCLR_SYNCRDY_Pos)) /* Assigment of value for SYNCRDY in the TC_INTENCLR register */
+#define TC_INTENCLR_SYNCRDY(value)            (TC_INTENCLR_SYNCRDY_Msk & (_UINT8_(value) << TC_INTENCLR_SYNCRDY_Pos)) /* Assignment of value for SYNCRDY in the TC_INTENCLR register */
 #define TC_INTENCLR_MC0_Pos                   _UINT8_(4)                                           /* (TC_INTENCLR) Match or Capture Channel 0 Interrupt Enable Position */
 #define TC_INTENCLR_MC0_Msk                   (_UINT8_(0x1) << TC_INTENCLR_MC0_Pos)                /* (TC_INTENCLR) Match or Capture Channel 0 Interrupt Enable Mask */
-#define TC_INTENCLR_MC0(value)                (TC_INTENCLR_MC0_Msk & (_UINT8_(value) << TC_INTENCLR_MC0_Pos)) /* Assigment of value for MC0 in the TC_INTENCLR register */
+#define TC_INTENCLR_MC0(value)                (TC_INTENCLR_MC0_Msk & (_UINT8_(value) << TC_INTENCLR_MC0_Pos)) /* Assignment of value for MC0 in the TC_INTENCLR register */
 #define TC_INTENCLR_MC1_Pos                   _UINT8_(5)                                           /* (TC_INTENCLR) Match or Capture Channel 1 Interrupt Enable Position */
 #define TC_INTENCLR_MC1_Msk                   (_UINT8_(0x1) << TC_INTENCLR_MC1_Pos)                /* (TC_INTENCLR) Match or Capture Channel 1 Interrupt Enable Mask */
-#define TC_INTENCLR_MC1(value)                (TC_INTENCLR_MC1_Msk & (_UINT8_(value) << TC_INTENCLR_MC1_Pos)) /* Assigment of value for MC1 in the TC_INTENCLR register */
+#define TC_INTENCLR_MC1(value)                (TC_INTENCLR_MC1_Msk & (_UINT8_(value) << TC_INTENCLR_MC1_Pos)) /* Assignment of value for MC1 in the TC_INTENCLR register */
 #define TC_INTENCLR_Msk                       _UINT8_(0x3B)                                        /* (TC_INTENCLR) Register Mask  */
 
 #define TC_INTENCLR_MC_Pos                    _UINT8_(4)                                           /* (TC_INTENCLR Position) Match or Capture Channel x Interrupt Enable */
@@ -249,19 +250,19 @@
 
 #define TC_INTENSET_OVF_Pos                   _UINT8_(0)                                           /* (TC_INTENSET) Overflow Interrupt Enable Position */
 #define TC_INTENSET_OVF_Msk                   (_UINT8_(0x1) << TC_INTENSET_OVF_Pos)                /* (TC_INTENSET) Overflow Interrupt Enable Mask */
-#define TC_INTENSET_OVF(value)                (TC_INTENSET_OVF_Msk & (_UINT8_(value) << TC_INTENSET_OVF_Pos)) /* Assigment of value for OVF in the TC_INTENSET register */
+#define TC_INTENSET_OVF(value)                (TC_INTENSET_OVF_Msk & (_UINT8_(value) << TC_INTENSET_OVF_Pos)) /* Assignment of value for OVF in the TC_INTENSET register */
 #define TC_INTENSET_ERR_Pos                   _UINT8_(1)                                           /* (TC_INTENSET) Error Interrupt Enable Position */
 #define TC_INTENSET_ERR_Msk                   (_UINT8_(0x1) << TC_INTENSET_ERR_Pos)                /* (TC_INTENSET) Error Interrupt Enable Mask */
-#define TC_INTENSET_ERR(value)                (TC_INTENSET_ERR_Msk & (_UINT8_(value) << TC_INTENSET_ERR_Pos)) /* Assigment of value for ERR in the TC_INTENSET register */
+#define TC_INTENSET_ERR(value)                (TC_INTENSET_ERR_Msk & (_UINT8_(value) << TC_INTENSET_ERR_Pos)) /* Assignment of value for ERR in the TC_INTENSET register */
 #define TC_INTENSET_SYNCRDY_Pos               _UINT8_(3)                                           /* (TC_INTENSET) Synchronization Ready Interrupt Enable Position */
 #define TC_INTENSET_SYNCRDY_Msk               (_UINT8_(0x1) << TC_INTENSET_SYNCRDY_Pos)            /* (TC_INTENSET) Synchronization Ready Interrupt Enable Mask */
-#define TC_INTENSET_SYNCRDY(value)            (TC_INTENSET_SYNCRDY_Msk & (_UINT8_(value) << TC_INTENSET_SYNCRDY_Pos)) /* Assigment of value for SYNCRDY in the TC_INTENSET register */
+#define TC_INTENSET_SYNCRDY(value)            (TC_INTENSET_SYNCRDY_Msk & (_UINT8_(value) << TC_INTENSET_SYNCRDY_Pos)) /* Assignment of value for SYNCRDY in the TC_INTENSET register */
 #define TC_INTENSET_MC0_Pos                   _UINT8_(4)                                           /* (TC_INTENSET) Match or Capture Channel 0 Interrupt Enable Position */
 #define TC_INTENSET_MC0_Msk                   (_UINT8_(0x1) << TC_INTENSET_MC0_Pos)                /* (TC_INTENSET) Match or Capture Channel 0 Interrupt Enable Mask */
-#define TC_INTENSET_MC0(value)                (TC_INTENSET_MC0_Msk & (_UINT8_(value) << TC_INTENSET_MC0_Pos)) /* Assigment of value for MC0 in the TC_INTENSET register */
+#define TC_INTENSET_MC0(value)                (TC_INTENSET_MC0_Msk & (_UINT8_(value) << TC_INTENSET_MC0_Pos)) /* Assignment of value for MC0 in the TC_INTENSET register */
 #define TC_INTENSET_MC1_Pos                   _UINT8_(5)                                           /* (TC_INTENSET) Match or Capture Channel 1 Interrupt Enable Position */
 #define TC_INTENSET_MC1_Msk                   (_UINT8_(0x1) << TC_INTENSET_MC1_Pos)                /* (TC_INTENSET) Match or Capture Channel 1 Interrupt Enable Mask */
-#define TC_INTENSET_MC1(value)                (TC_INTENSET_MC1_Msk & (_UINT8_(value) << TC_INTENSET_MC1_Pos)) /* Assigment of value for MC1 in the TC_INTENSET register */
+#define TC_INTENSET_MC1(value)                (TC_INTENSET_MC1_Msk & (_UINT8_(value) << TC_INTENSET_MC1_Pos)) /* Assignment of value for MC1 in the TC_INTENSET register */
 #define TC_INTENSET_Msk                       _UINT8_(0x3B)                                        /* (TC_INTENSET) Register Mask  */
 
 #define TC_INTENSET_MC_Pos                    _UINT8_(4)                                           /* (TC_INTENSET Position) Match or Capture Channel x Interrupt Enable */
@@ -273,19 +274,19 @@
 
 #define TC_INTFLAG_OVF_Pos                    _UINT8_(0)                                           /* (TC_INTFLAG) Overflow Position */
 #define TC_INTFLAG_OVF_Msk                    (_UINT8_(0x1) << TC_INTFLAG_OVF_Pos)                 /* (TC_INTFLAG) Overflow Mask */
-#define TC_INTFLAG_OVF(value)                 (TC_INTFLAG_OVF_Msk & (_UINT8_(value) << TC_INTFLAG_OVF_Pos)) /* Assigment of value for OVF in the TC_INTFLAG register */
+#define TC_INTFLAG_OVF(value)                 (TC_INTFLAG_OVF_Msk & (_UINT8_(value) << TC_INTFLAG_OVF_Pos)) /* Assignment of value for OVF in the TC_INTFLAG register */
 #define TC_INTFLAG_ERR_Pos                    _UINT8_(1)                                           /* (TC_INTFLAG) Error Position */
 #define TC_INTFLAG_ERR_Msk                    (_UINT8_(0x1) << TC_INTFLAG_ERR_Pos)                 /* (TC_INTFLAG) Error Mask */
-#define TC_INTFLAG_ERR(value)                 (TC_INTFLAG_ERR_Msk & (_UINT8_(value) << TC_INTFLAG_ERR_Pos)) /* Assigment of value for ERR in the TC_INTFLAG register */
+#define TC_INTFLAG_ERR(value)                 (TC_INTFLAG_ERR_Msk & (_UINT8_(value) << TC_INTFLAG_ERR_Pos)) /* Assignment of value for ERR in the TC_INTFLAG register */
 #define TC_INTFLAG_SYNCRDY_Pos                _UINT8_(3)                                           /* (TC_INTFLAG) Synchronization Ready Position */
 #define TC_INTFLAG_SYNCRDY_Msk                (_UINT8_(0x1) << TC_INTFLAG_SYNCRDY_Pos)             /* (TC_INTFLAG) Synchronization Ready Mask */
-#define TC_INTFLAG_SYNCRDY(value)             (TC_INTFLAG_SYNCRDY_Msk & (_UINT8_(value) << TC_INTFLAG_SYNCRDY_Pos)) /* Assigment of value for SYNCRDY in the TC_INTFLAG register */
+#define TC_INTFLAG_SYNCRDY(value)             (TC_INTFLAG_SYNCRDY_Msk & (_UINT8_(value) << TC_INTFLAG_SYNCRDY_Pos)) /* Assignment of value for SYNCRDY in the TC_INTFLAG register */
 #define TC_INTFLAG_MC0_Pos                    _UINT8_(4)                                           /* (TC_INTFLAG) Match or Capture Channel 0 Position */
 #define TC_INTFLAG_MC0_Msk                    (_UINT8_(0x1) << TC_INTFLAG_MC0_Pos)                 /* (TC_INTFLAG) Match or Capture Channel 0 Mask */
-#define TC_INTFLAG_MC0(value)                 (TC_INTFLAG_MC0_Msk & (_UINT8_(value) << TC_INTFLAG_MC0_Pos)) /* Assigment of value for MC0 in the TC_INTFLAG register */
+#define TC_INTFLAG_MC0(value)                 (TC_INTFLAG_MC0_Msk & (_UINT8_(value) << TC_INTFLAG_MC0_Pos)) /* Assignment of value for MC0 in the TC_INTFLAG register */
 #define TC_INTFLAG_MC1_Pos                    _UINT8_(5)                                           /* (TC_INTFLAG) Match or Capture Channel 1 Position */
 #define TC_INTFLAG_MC1_Msk                    (_UINT8_(0x1) << TC_INTFLAG_MC1_Pos)                 /* (TC_INTFLAG) Match or Capture Channel 1 Mask */
-#define TC_INTFLAG_MC1(value)                 (TC_INTFLAG_MC1_Msk & (_UINT8_(value) << TC_INTFLAG_MC1_Pos)) /* Assigment of value for MC1 in the TC_INTFLAG register */
+#define TC_INTFLAG_MC1(value)                 (TC_INTFLAG_MC1_Msk & (_UINT8_(value) << TC_INTFLAG_MC1_Pos)) /* Assignment of value for MC1 in the TC_INTFLAG register */
 #define TC_INTFLAG_Msk                        _UINT8_(0x3B)                                        /* (TC_INTFLAG) Register Mask  */
 
 #define TC_INTFLAG_MC_Pos                     _UINT8_(4)                                           /* (TC_INTFLAG Position) Match or Capture Channel x */
@@ -297,13 +298,13 @@
 
 #define TC_STATUS_STOP_Pos                    _UINT8_(3)                                           /* (TC_STATUS) Stop Position */
 #define TC_STATUS_STOP_Msk                    (_UINT8_(0x1) << TC_STATUS_STOP_Pos)                 /* (TC_STATUS) Stop Mask */
-#define TC_STATUS_STOP(value)                 (TC_STATUS_STOP_Msk & (_UINT8_(value) << TC_STATUS_STOP_Pos)) /* Assigment of value for STOP in the TC_STATUS register */
+#define TC_STATUS_STOP(value)                 (TC_STATUS_STOP_Msk & (_UINT8_(value) << TC_STATUS_STOP_Pos)) /* Assignment of value for STOP in the TC_STATUS register */
 #define TC_STATUS_SLAVE_Pos                   _UINT8_(4)                                           /* (TC_STATUS) Slave Position */
 #define TC_STATUS_SLAVE_Msk                   (_UINT8_(0x1) << TC_STATUS_SLAVE_Pos)                /* (TC_STATUS) Slave Mask */
-#define TC_STATUS_SLAVE(value)                (TC_STATUS_SLAVE_Msk & (_UINT8_(value) << TC_STATUS_SLAVE_Pos)) /* Assigment of value for SLAVE in the TC_STATUS register */
+#define TC_STATUS_SLAVE(value)                (TC_STATUS_SLAVE_Msk & (_UINT8_(value) << TC_STATUS_SLAVE_Pos)) /* Assignment of value for SLAVE in the TC_STATUS register */
 #define TC_STATUS_SYNCBUSY_Pos                _UINT8_(7)                                           /* (TC_STATUS) Synchronization Busy Position */
 #define TC_STATUS_SYNCBUSY_Msk                (_UINT8_(0x1) << TC_STATUS_SYNCBUSY_Pos)             /* (TC_STATUS) Synchronization Busy Mask */
-#define TC_STATUS_SYNCBUSY(value)             (TC_STATUS_SYNCBUSY_Msk & (_UINT8_(value) << TC_STATUS_SYNCBUSY_Pos)) /* Assigment of value for SYNCBUSY in the TC_STATUS register */
+#define TC_STATUS_SYNCBUSY(value)             (TC_STATUS_SYNCBUSY_Msk & (_UINT8_(value) << TC_STATUS_SYNCBUSY_Pos)) /* Assignment of value for SYNCBUSY in the TC_STATUS register */
 #define TC_STATUS_Msk                         _UINT8_(0x98)                                        /* (TC_STATUS) Register Mask  */
 
 
@@ -312,7 +313,7 @@
 
 #define TC_COUNT8_COUNT_COUNT_Pos             _UINT8_(0)                                           /* (TC_COUNT8_COUNT) Counter Value Position */
 #define TC_COUNT8_COUNT_COUNT_Msk             (_UINT8_(0xFF) << TC_COUNT8_COUNT_COUNT_Pos)         /* (TC_COUNT8_COUNT) Counter Value Mask */
-#define TC_COUNT8_COUNT_COUNT(value)          (TC_COUNT8_COUNT_COUNT_Msk & (_UINT8_(value) << TC_COUNT8_COUNT_COUNT_Pos)) /* Assigment of value for COUNT in the TC_COUNT8_COUNT register */
+#define TC_COUNT8_COUNT_COUNT(value)          (TC_COUNT8_COUNT_COUNT_Msk & (_UINT8_(value) << TC_COUNT8_COUNT_COUNT_Pos)) /* Assignment of value for COUNT in the TC_COUNT8_COUNT register */
 #define TC_COUNT8_COUNT_Msk                   _UINT8_(0xFF)                                        /* (TC_COUNT8_COUNT) Register Mask  */
 
 
@@ -321,7 +322,7 @@
 
 #define TC_COUNT16_COUNT_COUNT_Pos            _UINT16_(0)                                          /* (TC_COUNT16_COUNT) Count Value Position */
 #define TC_COUNT16_COUNT_COUNT_Msk            (_UINT16_(0xFFFF) << TC_COUNT16_COUNT_COUNT_Pos)     /* (TC_COUNT16_COUNT) Count Value Mask */
-#define TC_COUNT16_COUNT_COUNT(value)         (TC_COUNT16_COUNT_COUNT_Msk & (_UINT16_(value) << TC_COUNT16_COUNT_COUNT_Pos)) /* Assigment of value for COUNT in the TC_COUNT16_COUNT register */
+#define TC_COUNT16_COUNT_COUNT(value)         (TC_COUNT16_COUNT_COUNT_Msk & (_UINT16_(value) << TC_COUNT16_COUNT_COUNT_Pos)) /* Assignment of value for COUNT in the TC_COUNT16_COUNT register */
 #define TC_COUNT16_COUNT_Msk                  _UINT16_(0xFFFF)                                     /* (TC_COUNT16_COUNT) Register Mask  */
 
 
@@ -330,7 +331,7 @@
 
 #define TC_COUNT32_COUNT_COUNT_Pos            _UINT32_(0)                                          /* (TC_COUNT32_COUNT) Count Value Position */
 #define TC_COUNT32_COUNT_COUNT_Msk            (_UINT32_(0xFFFFFFFF) << TC_COUNT32_COUNT_COUNT_Pos) /* (TC_COUNT32_COUNT) Count Value Mask */
-#define TC_COUNT32_COUNT_COUNT(value)         (TC_COUNT32_COUNT_COUNT_Msk & (_UINT32_(value) << TC_COUNT32_COUNT_COUNT_Pos)) /* Assigment of value for COUNT in the TC_COUNT32_COUNT register */
+#define TC_COUNT32_COUNT_COUNT(value)         (TC_COUNT32_COUNT_COUNT_Msk & (_UINT32_(value) << TC_COUNT32_COUNT_COUNT_Pos)) /* Assignment of value for COUNT in the TC_COUNT32_COUNT register */
 #define TC_COUNT32_COUNT_Msk                  _UINT32_(0xFFFFFFFF)                                 /* (TC_COUNT32_COUNT) Register Mask  */
 
 
@@ -339,7 +340,7 @@
 
 #define TC_COUNT8_PER_PER_Pos                 _UINT8_(0)                                           /* (TC_COUNT8_PER) Period Value Position */
 #define TC_COUNT8_PER_PER_Msk                 (_UINT8_(0xFF) << TC_COUNT8_PER_PER_Pos)             /* (TC_COUNT8_PER) Period Value Mask */
-#define TC_COUNT8_PER_PER(value)              (TC_COUNT8_PER_PER_Msk & (_UINT8_(value) << TC_COUNT8_PER_PER_Pos)) /* Assigment of value for PER in the TC_COUNT8_PER register */
+#define TC_COUNT8_PER_PER(value)              (TC_COUNT8_PER_PER_Msk & (_UINT8_(value) << TC_COUNT8_PER_PER_Pos)) /* Assignment of value for PER in the TC_COUNT8_PER register */
 #define TC_COUNT8_PER_Msk                     _UINT8_(0xFF)                                        /* (TC_COUNT8_PER) Register Mask  */
 
 
@@ -348,7 +349,7 @@
 
 #define TC_COUNT8_CC_CC_Pos                   _UINT8_(0)                                           /* (TC_COUNT8_CC) Compare/Capture Value Position */
 #define TC_COUNT8_CC_CC_Msk                   (_UINT8_(0xFF) << TC_COUNT8_CC_CC_Pos)               /* (TC_COUNT8_CC) Compare/Capture Value Mask */
-#define TC_COUNT8_CC_CC(value)                (TC_COUNT8_CC_CC_Msk & (_UINT8_(value) << TC_COUNT8_CC_CC_Pos)) /* Assigment of value for CC in the TC_COUNT8_CC register */
+#define TC_COUNT8_CC_CC(value)                (TC_COUNT8_CC_CC_Msk & (_UINT8_(value) << TC_COUNT8_CC_CC_Pos)) /* Assignment of value for CC in the TC_COUNT8_CC register */
 #define TC_COUNT8_CC_Msk                      _UINT8_(0xFF)                                        /* (TC_COUNT8_CC) Register Mask  */
 
 
@@ -357,7 +358,7 @@
 
 #define TC_COUNT16_CC_CC_Pos                  _UINT16_(0)                                          /* (TC_COUNT16_CC) Compare/Capture Value Position */
 #define TC_COUNT16_CC_CC_Msk                  (_UINT16_(0xFFFF) << TC_COUNT16_CC_CC_Pos)           /* (TC_COUNT16_CC) Compare/Capture Value Mask */
-#define TC_COUNT16_CC_CC(value)               (TC_COUNT16_CC_CC_Msk & (_UINT16_(value) << TC_COUNT16_CC_CC_Pos)) /* Assigment of value for CC in the TC_COUNT16_CC register */
+#define TC_COUNT16_CC_CC(value)               (TC_COUNT16_CC_CC_Msk & (_UINT16_(value) << TC_COUNT16_CC_CC_Pos)) /* Assignment of value for CC in the TC_COUNT16_CC register */
 #define TC_COUNT16_CC_Msk                     _UINT16_(0xFFFF)                                     /* (TC_COUNT16_CC) Register Mask  */
 
 
@@ -366,11 +367,11 @@
 
 #define TC_COUNT32_CC_CC_Pos                  _UINT32_(0)                                          /* (TC_COUNT32_CC) Compare/Capture Value Position */
 #define TC_COUNT32_CC_CC_Msk                  (_UINT32_(0xFFFFFFFF) << TC_COUNT32_CC_CC_Pos)       /* (TC_COUNT32_CC) Compare/Capture Value Mask */
-#define TC_COUNT32_CC_CC(value)               (TC_COUNT32_CC_CC_Msk & (_UINT32_(value) << TC_COUNT32_CC_CC_Pos)) /* Assigment of value for CC in the TC_COUNT32_CC register */
+#define TC_COUNT32_CC_CC(value)               (TC_COUNT32_CC_CC_Msk & (_UINT32_(value) << TC_COUNT32_CC_CC_Pos)) /* Assignment of value for CC in the TC_COUNT32_CC register */
 #define TC_COUNT32_CC_Msk                     _UINT32_(0xFFFFFFFF)                                 /* (TC_COUNT32_CC) Register Mask  */
 
 
-/** \brief TC register offsets definitions */
+/* TC register offsets definitions */
 #define TC_CTRLA_REG_OFST              _UINT32_(0x00)      /* (TC_CTRLA) Control A Offset */
 #define TC_READREQ_REG_OFST            _UINT32_(0x02)      /* (TC_READREQ) Read Request Offset */
 #define TC_CTRLBCLR_REG_OFST           _UINT32_(0x04)      /* (TC_CTRLBCLR) Control B Clear Offset */
@@ -397,77 +398,77 @@
 #define TC_COUNT32_CC1_REG_OFST        _UINT32_(0x1C)      /* (TC_COUNT32_CC1) COUNT32 Compare/Capture Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
-/** \brief TC register API structure */
+/* TC register API structure */
 typedef struct
 {  /* Basic Timer Counter */
-  __IO  uint16_t                       TC_CTRLA;           /**< Offset: 0x00 (R/W  16) Control A */
-  __IO  uint16_t                       TC_READREQ;         /**< Offset: 0x02 (R/W  16) Read Request */
-  __IO  uint8_t                        TC_CTRLBCLR;        /**< Offset: 0x04 (R/W  8) Control B Clear */
-  __IO  uint8_t                        TC_CTRLBSET;        /**< Offset: 0x05 (R/W  8) Control B Set */
-  __IO  uint8_t                        TC_CTRLC;           /**< Offset: 0x06 (R/W  8) Control C */
+  __IO  uint16_t                       TC_CTRLA;           /* Offset: 0x00 (R/W  16) Control A */
+  __IO  uint16_t                       TC_READREQ;         /* Offset: 0x02 (R/W  16) Read Request */
+  __IO  uint8_t                        TC_CTRLBCLR;        /* Offset: 0x04 (R/W  8) Control B Clear */
+  __IO  uint8_t                        TC_CTRLBSET;        /* Offset: 0x05 (R/W  8) Control B Set */
+  __IO  uint8_t                        TC_CTRLC;           /* Offset: 0x06 (R/W  8) Control C */
   __I   uint8_t                        Reserved1[0x01];
-  __IO  uint8_t                        TC_DBGCTRL;         /**< Offset: 0x08 (R/W  8) Debug Control */
+  __IO  uint8_t                        TC_DBGCTRL;         /* Offset: 0x08 (R/W  8) Debug Control */
   __I   uint8_t                        Reserved2[0x01];
-  __IO  uint16_t                       TC_EVCTRL;          /**< Offset: 0x0A (R/W  16) Event Control */
-  __IO  uint8_t                        TC_INTENCLR;        /**< Offset: 0x0C (R/W  8) Interrupt Enable Clear */
-  __IO  uint8_t                        TC_INTENSET;        /**< Offset: 0x0D (R/W  8) Interrupt Enable Set */
-  __IO  uint8_t                        TC_INTFLAG;         /**< Offset: 0x0E (R/W  8) Interrupt Flag Status and Clear */
-  __I   uint8_t                        TC_STATUS;          /**< Offset: 0x0F (R/   8) Status */
-  __IO  uint8_t                        TC_COUNT;           /**< Offset: 0x10 (R/W  8) COUNT8 Counter Value */
+  __IO  uint16_t                       TC_EVCTRL;          /* Offset: 0x0A (R/W  16) Event Control */
+  __IO  uint8_t                        TC_INTENCLR;        /* Offset: 0x0C (R/W  8) Interrupt Enable Clear */
+  __IO  uint8_t                        TC_INTENSET;        /* Offset: 0x0D (R/W  8) Interrupt Enable Set */
+  __IO  uint8_t                        TC_INTFLAG;         /* Offset: 0x0E (R/W  8) Interrupt Flag Status and Clear */
+  __I   uint8_t                        TC_STATUS;          /* Offset: 0x0F (R/   8) Status */
+  __IO  uint8_t                        TC_COUNT;           /* Offset: 0x10 (R/W  8) COUNT8 Counter Value */
   __I   uint8_t                        Reserved3[0x03];
-  __IO  uint8_t                        TC_PER;             /**< Offset: 0x14 (R/W  8) COUNT8 Period Value */
+  __IO  uint8_t                        TC_PER;             /* Offset: 0x14 (R/W  8) COUNT8 Period Value */
   __I   uint8_t                        Reserved4[0x03];
-  __IO  uint8_t                        TC_CC[2];           /**< Offset: 0x18 (R/W  8) COUNT8 Compare/Capture */
+  __IO  uint8_t                        TC_CC[2];           /* Offset: 0x18 (R/W  8) COUNT8 Compare/Capture */
 } tc_count8_registers_t;
 
-/** \brief TC register API structure */
+/* TC register API structure */
 typedef struct
 {  /* Basic Timer Counter */
-  __IO  uint16_t                       TC_CTRLA;           /**< Offset: 0x00 (R/W  16) Control A */
-  __IO  uint16_t                       TC_READREQ;         /**< Offset: 0x02 (R/W  16) Read Request */
-  __IO  uint8_t                        TC_CTRLBCLR;        /**< Offset: 0x04 (R/W  8) Control B Clear */
-  __IO  uint8_t                        TC_CTRLBSET;        /**< Offset: 0x05 (R/W  8) Control B Set */
-  __IO  uint8_t                        TC_CTRLC;           /**< Offset: 0x06 (R/W  8) Control C */
+  __IO  uint16_t                       TC_CTRLA;           /* Offset: 0x00 (R/W  16) Control A */
+  __IO  uint16_t                       TC_READREQ;         /* Offset: 0x02 (R/W  16) Read Request */
+  __IO  uint8_t                        TC_CTRLBCLR;        /* Offset: 0x04 (R/W  8) Control B Clear */
+  __IO  uint8_t                        TC_CTRLBSET;        /* Offset: 0x05 (R/W  8) Control B Set */
+  __IO  uint8_t                        TC_CTRLC;           /* Offset: 0x06 (R/W  8) Control C */
   __I   uint8_t                        Reserved1[0x01];
-  __IO  uint8_t                        TC_DBGCTRL;         /**< Offset: 0x08 (R/W  8) Debug Control */
+  __IO  uint8_t                        TC_DBGCTRL;         /* Offset: 0x08 (R/W  8) Debug Control */
   __I   uint8_t                        Reserved2[0x01];
-  __IO  uint16_t                       TC_EVCTRL;          /**< Offset: 0x0A (R/W  16) Event Control */
-  __IO  uint8_t                        TC_INTENCLR;        /**< Offset: 0x0C (R/W  8) Interrupt Enable Clear */
-  __IO  uint8_t                        TC_INTENSET;        /**< Offset: 0x0D (R/W  8) Interrupt Enable Set */
-  __IO  uint8_t                        TC_INTFLAG;         /**< Offset: 0x0E (R/W  8) Interrupt Flag Status and Clear */
-  __I   uint8_t                        TC_STATUS;          /**< Offset: 0x0F (R/   8) Status */
-  __IO  uint16_t                       TC_COUNT;           /**< Offset: 0x10 (R/W  16) COUNT16 Counter Value */
+  __IO  uint16_t                       TC_EVCTRL;          /* Offset: 0x0A (R/W  16) Event Control */
+  __IO  uint8_t                        TC_INTENCLR;        /* Offset: 0x0C (R/W  8) Interrupt Enable Clear */
+  __IO  uint8_t                        TC_INTENSET;        /* Offset: 0x0D (R/W  8) Interrupt Enable Set */
+  __IO  uint8_t                        TC_INTFLAG;         /* Offset: 0x0E (R/W  8) Interrupt Flag Status and Clear */
+  __I   uint8_t                        TC_STATUS;          /* Offset: 0x0F (R/   8) Status */
+  __IO  uint16_t                       TC_COUNT;           /* Offset: 0x10 (R/W  16) COUNT16 Counter Value */
   __I   uint8_t                        Reserved3[0x06];
-  __IO  uint16_t                       TC_CC[2];           /**< Offset: 0x18 (R/W  16) COUNT16 Compare/Capture */
+  __IO  uint16_t                       TC_CC[2];           /* Offset: 0x18 (R/W  16) COUNT16 Compare/Capture */
 } tc_count16_registers_t;
 
-/** \brief TC register API structure */
+/* TC register API structure */
 typedef struct
 {  /* Basic Timer Counter */
-  __IO  uint16_t                       TC_CTRLA;           /**< Offset: 0x00 (R/W  16) Control A */
-  __IO  uint16_t                       TC_READREQ;         /**< Offset: 0x02 (R/W  16) Read Request */
-  __IO  uint8_t                        TC_CTRLBCLR;        /**< Offset: 0x04 (R/W  8) Control B Clear */
-  __IO  uint8_t                        TC_CTRLBSET;        /**< Offset: 0x05 (R/W  8) Control B Set */
-  __IO  uint8_t                        TC_CTRLC;           /**< Offset: 0x06 (R/W  8) Control C */
+  __IO  uint16_t                       TC_CTRLA;           /* Offset: 0x00 (R/W  16) Control A */
+  __IO  uint16_t                       TC_READREQ;         /* Offset: 0x02 (R/W  16) Read Request */
+  __IO  uint8_t                        TC_CTRLBCLR;        /* Offset: 0x04 (R/W  8) Control B Clear */
+  __IO  uint8_t                        TC_CTRLBSET;        /* Offset: 0x05 (R/W  8) Control B Set */
+  __IO  uint8_t                        TC_CTRLC;           /* Offset: 0x06 (R/W  8) Control C */
   __I   uint8_t                        Reserved1[0x01];
-  __IO  uint8_t                        TC_DBGCTRL;         /**< Offset: 0x08 (R/W  8) Debug Control */
+  __IO  uint8_t                        TC_DBGCTRL;         /* Offset: 0x08 (R/W  8) Debug Control */
   __I   uint8_t                        Reserved2[0x01];
-  __IO  uint16_t                       TC_EVCTRL;          /**< Offset: 0x0A (R/W  16) Event Control */
-  __IO  uint8_t                        TC_INTENCLR;        /**< Offset: 0x0C (R/W  8) Interrupt Enable Clear */
-  __IO  uint8_t                        TC_INTENSET;        /**< Offset: 0x0D (R/W  8) Interrupt Enable Set */
-  __IO  uint8_t                        TC_INTFLAG;         /**< Offset: 0x0E (R/W  8) Interrupt Flag Status and Clear */
-  __I   uint8_t                        TC_STATUS;          /**< Offset: 0x0F (R/   8) Status */
-  __IO  uint32_t                       TC_COUNT;           /**< Offset: 0x10 (R/W  32) COUNT32 Counter Value */
+  __IO  uint16_t                       TC_EVCTRL;          /* Offset: 0x0A (R/W  16) Event Control */
+  __IO  uint8_t                        TC_INTENCLR;        /* Offset: 0x0C (R/W  8) Interrupt Enable Clear */
+  __IO  uint8_t                        TC_INTENSET;        /* Offset: 0x0D (R/W  8) Interrupt Enable Set */
+  __IO  uint8_t                        TC_INTFLAG;         /* Offset: 0x0E (R/W  8) Interrupt Flag Status and Clear */
+  __I   uint8_t                        TC_STATUS;          /* Offset: 0x0F (R/   8) Status */
+  __IO  uint32_t                       TC_COUNT;           /* Offset: 0x10 (R/W  32) COUNT32 Counter Value */
   __I   uint8_t                        Reserved3[0x04];
-  __IO  uint32_t                       TC_CC[2];           /**< Offset: 0x18 (R/W  32) COUNT32 Compare/Capture */
+  __IO  uint32_t                       TC_CC[2];           /* Offset: 0x18 (R/W  32) COUNT32 Compare/Capture */
 } tc_count32_registers_t;
 
-/** \brief TC hardware registers */
+/* TC hardware registers */
 typedef union
 {  /* Basic Timer Counter */
-       tc_count8_registers_t          COUNT8;         /**< 8-bit Counter Mode */
-       tc_count16_registers_t         COUNT16;        /**< 16-bit Counter Mode */
-       tc_count32_registers_t         COUNT32;        /**< 32-bit Counter Mode */
+       tc_count8_registers_t          COUNT8;         /* 8-bit Counter Mode */
+       tc_count16_registers_t         COUNT16;        /* 16-bit Counter Mode */
+       tc_count32_registers_t         COUNT32;        /* 32-bit Counter Mode */
 } tc_registers_t;
 
 

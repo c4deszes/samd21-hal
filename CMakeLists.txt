@@ -39,6 +39,7 @@ target_sources(samx21-sources INTERFACE
     src/hal/rtc.c
     src/hal/tc.c
     src/hal/tcc.c
+    src/hal/systick.c
 
     # Memory
     src/hal/nvmctrl.c

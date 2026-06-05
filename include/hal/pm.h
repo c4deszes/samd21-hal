@@ -1,6 +1,10 @@
 #ifndef PM_H_
 #define PM_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 typedef enum {
@@ -56,5 +60,9 @@ void PM_IdleModeEnter(void);
  *        standby operations and interrupts enabled can wakeup the CPU
  */
 void PM_StandbyModeEnter(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif

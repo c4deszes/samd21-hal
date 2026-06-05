@@ -1,6 +1,10 @@
 #if !defined(HAL_EVSYS_)
 #define HAL_EVSYS_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 typedef enum {
@@ -66,5 +70,9 @@ void EVSYS_DisconnectUser(uint8_t user_channel);
  * @return uint8_t Generator channel number
  */
 uint8_t EVSYS_AcquireGeneratorChannel(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_EVSYS_

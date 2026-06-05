@@ -8,7 +8,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/c4deszes/arm-gcc-docker:v1.4.0
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.5.0
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -20,13 +20,10 @@ jobs:
     name: Documentation
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/c4deszes/arm-gcc-docker:v1.4.0
+      image: ghcr.io/c4deszes/arm-gcc-docker:v1.5.0
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Install Doxygen
-        run: apt-get install -y doxygen
 
       - name: Install documentation dependencies
         run: python -m pip install -r docs/requirements.txt

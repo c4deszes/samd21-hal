@@ -1,26 +1,25 @@
 /*
- * Instance header file for ATSAMD21J18A
+ * Instance header file for ATSAMD21J17D
  *
- * Copyright (c) 2022 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2026 Microchip Technology Inc. and its subsidiaries.
  *
- * Subject to your compliance with these terms, you may use Microchip software and any derivatives
- * exclusively with Microchip products. It is your responsibility to comply with third party license
- * terms applicable to your use of third party software (including open source software) that may
- * accompany Microchip software.
+ * SPDX-License-Identifier: Apache-2.0
  *
- * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY,
- * APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND
- * FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
- * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF
- * MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE FULLEST EXTENT
- * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT
- * EXCEED THE AMOUNT OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 
-/* file generated from device description version 2019-11-25T06:52:33Z */
+/* file generated from device description file (ATDF) version 2020-11-19T13:00:05Z */
 #ifndef _SAMD21_I2S_INSTANCE_
 #define _SAMD21_I2S_INSTANCE_
 
@@ -29,8 +28,8 @@
 #define I2S_CLK_NUM                              (2)        /* Number of clock units */
 #define I2S_GCLK_ID_0                            (35)       /* Index of Generic Clock 0 */
 #define I2S_GCLK_ID_1                            (36)       /* Index of Generic Clock 1 */
+#define I2S_INSTANCE_ID                          (84)
 #define I2S_MAX_SLOTS                            (8)        /* Max number of data slots in frame */
 #define I2S_SER_NUM                              (2)        /* Number of serializers */
-#define I2S_INSTANCE_ID                          (84)       
 
 #endif /* _SAMD21_I2S_INSTANCE_ */

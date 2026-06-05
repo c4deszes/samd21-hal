@@ -1,9 +1,28 @@
 #if !defined(HAL_ADC_H_)
 #define HAL_ADC_H_
 
-#include <stdint.h>
 
-typedef void (*adc_result_callback_t)(uint16_t result);
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+#include <stdint.h>
+#include <stdbool.h>
+
+typedef struct adc_read_job_t adc_read_job_t;
+typedef struct adc_read_result_t adc_read_result_t;
+
+typedef void (*adc_result_callback_t)(adc_read_job_t* job, adc_read_result_t* result);
+
+typedef struct adc_read_job_t {
+    uint8_t muxpos;
+    uint8_t muxneg;
+    adc_result_callback_t callback;
+} adc_read_job_t;
+
+typedef struct adc_read_result_t {
+    uint16_t result;
+} adc_read_result_t;
 
 /**
  * @brief Sets up the ADC for single-shot mode.
@@ -26,11 +45,22 @@ void ADC_Disable(void);
  */
 uint16_t ADC_ReadSync(uint8_t channel);
 
-void ADC_ReadAsync(uint8_t channel, adc_result_callback_t callback);
+
+/**
+ * @brief Reads the ADC value asynchronously from the specified channel.
+ * 
+ * @param job A pointer to an adc_read_job_t structure containing the channel and callback information.
+ * @return true if the read operation was successfully started, false otherwise.
+ */
+bool ADC_ReadAsync(adc_read_job_t* job);
 
 /**
  * @brief Resets the ADC to its default state.
  */
 void ADC_Reset(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_ADC_H_

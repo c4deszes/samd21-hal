@@ -6,6 +6,10 @@
 #ifndef HAL_WDT_H_
 #define HAL_WDT_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdbool.h>
 
 /**
@@ -60,5 +64,9 @@ void WDT_Acknowledge(void);
  * value into the Watchdog clear register
  */
 void WDT_SelfReset(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif  // HAL_WDT_H_

@@ -1,6 +1,10 @@
 #if !defined(HAL_GCLK_H_)
 #define HAL_GCLK_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #define GCLK_GEN0 0u
@@ -41,5 +45,9 @@ void GCLK_SelectGenerator(uint8_t id, uint8_t generator);
  * @brief Resets all Generic Clock configurations
  */
 void GCLK_Reset(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_GCLK_H_

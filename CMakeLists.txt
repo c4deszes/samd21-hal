@@ -21,6 +21,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake/application.cmake)
 ################################################################################
 add_library(cmsis INTERFACE)
 target_include_directories(cmsis INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/lib/CMSIS/CMSIS/Core/Include)
+target_compile_definitions(cmsis INTERFACE DISABLE_CMSIS_INIT)
 
 ################################################################################
 # Sources
@@ -30,6 +31,7 @@ target_sources(samx21-sources INTERFACE
     # Input output
     src/hal/ac.c
     src/hal/adc.c
+    src/hal/dac.c
     src/hal/eic.c
     src/hal/gpio.c
 
@@ -37,6 +39,7 @@ target_sources(samx21-sources INTERFACE
     src/hal/rtc.c
     src/hal/tc.c
     src/hal/tcc.c
+    src/hal/systick.c
 
     # Memory
     src/hal/nvmctrl.c
@@ -89,6 +92,21 @@ function(samx21_hal TARGET CHIPNAME)
                                                 samx21-api
                                                 samx21-sources)
 endfunction()
+
+add_library(samx21-sim INTERFACE)
+target_sources(samx21-sim INTERFACE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/dsu.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/gpio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/nvic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/nvmctrl.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/sercom_spi.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/tcc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sim/wdt.c
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/common/ringbuffer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/common/swtimer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/common/scheduler.c
+)
 
 ################################################################################
 # Testing

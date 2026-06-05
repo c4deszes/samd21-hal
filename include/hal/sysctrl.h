@@ -1,6 +1,10 @@
 #if !defined(HAL_SYSCTRL_H_)
 #define HAL_SYSCTRL_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 /**
@@ -15,5 +19,9 @@ void SYSCTRL_EnableInternalOSC32K(void);
 void SYSCTRL_ConfigureOSC8M(void);
 
 void SYSCTRL_InitializeDFLL(uint32_t freq_in, uint32_t freq_out);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_SYSCTRL_H_

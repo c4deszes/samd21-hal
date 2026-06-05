@@ -1,6 +1,10 @@
 #if !defined(BSP_SPI_H_)
 #define BSP_SPI_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include "hal/sercom_common.h"
 
@@ -54,5 +58,9 @@ void SERCOM_SPI_Enable(uint8_t sercom);
 void SERCOM_SPI_Disable(uint8_t sercom);
 
 uint8_t SERCOM_SPI_TransferByte(uint8_t sercom, uint8_t data);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // BSP_SPI_H_

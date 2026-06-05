@@ -1,6 +1,10 @@
 #if !defined(HAL_NVMCTRL_H_)
 #define HAL_NVMCTRL_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -63,5 +67,9 @@ uint16_t NVMCTRL_GetPageCount(void);
  * @return true if the operation was successful, false otherwise.
  */
 bool NVMCTRL_WritePages(uint32_t address, const uint8_t *data, uint16_t page_count);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_NVMCTRL_H_

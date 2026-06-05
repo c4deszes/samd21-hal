@@ -1,6 +1,10 @@
 #if !defined(HAL_DSU_H_)
 #define HAL_DSU_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #define DSU_CRC32_INITIAL 0xFFFFFFFFUL
@@ -34,5 +38,9 @@ uint32_t DSU_SoftwareCRC32(uint32_t initial, void* start, uint32_t length);
  * @return uint32_t Serial number
  */
 uint32_t DSU_GetSerialNumber32(void);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_DSU_H_

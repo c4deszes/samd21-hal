@@ -1,6 +1,10 @@
 #if !defined(HAL_SERCOM_USART_)
 #define HAL_SERCOM_USART_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include "common/ringbuffer.h"
 #include "hal/sercom_common.h"
 
@@ -37,5 +41,9 @@ uint8_t SERCOM_USART_Read(uint8_t sercom);
 void SERCOM_USART_FlushInput(uint8_t sercom);
 
 void SERCOM_USART_InterruptHandler(uint8_t sercom);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_SERCOM_USART_

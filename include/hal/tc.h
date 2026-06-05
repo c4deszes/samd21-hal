@@ -1,6 +1,10 @@
 #if !defined(HAL_TC_H_)
 #define HAL_TC_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 #define TC3 3
@@ -23,5 +27,9 @@ void TC_SetupCapture(uint8_t timer, tc_prescaler prescaler);
 void TC_Start(uint8_t timer);
 
 void TC_Stop(uint8_t timer);
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // HAL_TC_H_

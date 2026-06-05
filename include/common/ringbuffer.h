@@ -1,6 +1,10 @@
 #if !defined(COMMON_RINGBUFFER_H_)
 #define COMMON_RINGBUFFER_H_
 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -79,5 +83,9 @@ uint32_t ringbuffer32_read(ringbuffer32_t* self);
         .iTail = 0, \
         .numElems = bufferSize \
     }
+
+#if defined(__cplusplus)
+}
+#endif
 
 #endif // COMMON_RINGBUFFER_H_

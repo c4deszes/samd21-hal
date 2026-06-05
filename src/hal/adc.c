@@ -1,6 +1,14 @@
 #include "hal/adc.h"
 
+#include <stdlib.h>
+
 #include "sam.h"
+
+#define ADC_MAX_JOBS 16
+adc_read_job_t* adc_job_queue[ADC_MAX_JOBS]; // Queue for pending ADC read jobs
+uint8_t adc_job_queue_head = 0;
+uint8_t adc_job_queue_tail = 0;
+uint8_t adc_job_queue_count = 0;
 
 /**
  * @brief Wait for the ADC registers to finish synchronizing.
@@ -32,8 +40,6 @@ static void ADC_LoadCalibration(void) {
 
     /* Write the calibration data. */
     ADC_REGS->ADC_CALIB = ADC_CALIB_BIAS_CAL(bias) | ADC_CALIB_LINEARITY_CAL(linearity);
-    // ADC_REGS->ADC_GAINCORR
-    // ADC_REGS->ADC_OFFSETCORR
 }
 
 void ADC_SetupSingleShot(void) {
@@ -52,7 +58,7 @@ void ADC_SetupSingleShot(void) {
     ADC_REGS->ADC_SAMPCTRL = ADC_SAMPCTRL_SAMPLEN(0); // Set sample length to 0 (minimum)
     ADC_REGS->ADC_AVGCTRL = ADC_AVGCTRL_SAMPLENUM_1; // Set number of samples to 1
 
-    ADC_REGS->ADC_INPUTCTRL = ADC_INPUTCTRL_GAIN_DIV2 | // Set gain to 2x
+    ADC_REGS->ADC_INPUTCTRL = ADC_INPUTCTRL_GAIN_DIV2 | // Set gain to 1/2
                               ADC_INPUTCTRL_MUXPOS(0) | // Select input channel 0
                               ADC_INPUTCTRL_MUXNEG_GND; // Use ground as negative input
     ADC_Sync();
@@ -66,6 +72,9 @@ void ADC_SetupSingleShot(void) {
     while (!(ADC_REGS->ADC_INTFLAG & ADC_INTFLAG_RESRDY_Msk)); // Wait for the result ready flag
     (void) ADC_REGS->ADC_RESULT; // Read the result
     ADC_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk;
+
+    ADC_REGS->ADC_INTENSET = ADC_INTENSET_RESRDY_Msk; // Enable result ready interrupt
+    NVIC_EnableIRQ(ADC_IRQn); // Enable ADC interrupt in NVIC
 }
 
 uint16_t ADC_ReadSync(uint8_t channel){
@@ -80,6 +89,80 @@ uint16_t ADC_ReadSync(uint8_t channel){
     ADC_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk; // Clear the result ready flag
 
     return result;
+}
+
+static void ADC_AtomicBegin() {
+    __disable_irq();
+}
+
+static void ADC_AtomicEnd() {
+    __enable_irq();
+}
+
+static void ADC_PushJob(adc_read_job_t* job) {
+    ADC_AtomicBegin();
+    adc_job_queue[adc_job_queue_tail] = job;
+    adc_job_queue_tail = (adc_job_queue_tail + 1) % ADC_MAX_JOBS;
+    adc_job_queue_count++;
+    ADC_AtomicEnd();
+}
+
+static adc_read_job_t* ADC_PopJob() {
+    ADC_AtomicBegin();
+    adc_read_job_t* job = NULL;
+    if (adc_job_queue_count > 0) {
+        job = adc_job_queue[adc_job_queue_head];
+        adc_job_queue_head = (adc_job_queue_head + 1) % ADC_MAX_JOBS;
+        adc_job_queue_count--;
+    }
+    ADC_AtomicEnd();
+    return job;
+}
+
+void ADC_Trigger() {
+    ADC_REGS->ADC_SWTRIG = ADC_SWTRIG_START_Msk; // Start the ADC
+}
+
+void ADC_SetMuxPosition(adc_read_job_t* job) {
+    uint32_t inputctrl_masked = ADC_REGS->ADC_INPUTCTRL & (~ADC_INPUTCTRL_MUXPOS_Msk & ~ADC_INPUTCTRL_MUXNEG_Msk);
+    ADC_REGS->ADC_INPUTCTRL = inputctrl_masked | ADC_INPUTCTRL_MUXPOS(job->muxpos) | ADC_INPUTCTRL_MUXNEG(job->muxneg);
+    ADC_Sync();
+}
+
+bool ADC_ReadAsync(adc_read_job_t* job) {
+    if (adc_job_queue_count >= ADC_MAX_JOBS) {
+        // Queue is full, cannot add new job
+        return false;
+    }
+
+    ADC_PushJob(job);
+
+    // If this is the only job in the queue, start the ADC conversion immediately
+    if (adc_job_queue_count == 1) {
+        ADC_SetMuxPosition(job);
+        ADC_Trigger();
+    }
+
+    return true;
+}
+
+void ADC_Handler(void) {
+    if (ADC_REGS->ADC_INTFLAG & ADC_INTFLAG_RESRDY_Msk) {
+        uint16_t result = ADC_REGS->ADC_RESULT; // Read the result
+        ADC_REGS->ADC_INTFLAG = ADC_INTFLAG_RESRDY_Msk; // Clear the result ready flag
+
+        adc_read_job_t* job = ADC_PopJob();
+        if (job && job->callback) {
+            adc_read_result_t res = { .result = result };
+            job->callback(job, &res);
+        }
+
+        // Start the next ADC conversion if there are more jobs in the queue
+        if (adc_job_queue_count > 0) {
+            ADC_SetMuxPosition(adc_job_queue[adc_job_queue_head]);
+            ADC_Trigger();
+        }
+    }
 }
 
 void ADC_Reset(void) {

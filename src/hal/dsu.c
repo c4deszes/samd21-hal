@@ -37,7 +37,7 @@ uint32_t DSU_SoftwareCRC32(uint32_t initial, void* start, uint32_t length)
         }
     }
 
-    return crc;
+    return crc ^ 0xFFFFFFFFUL;
 }
 
 

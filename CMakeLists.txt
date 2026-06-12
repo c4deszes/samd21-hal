@@ -76,6 +76,7 @@ function(samx21_hal TARGET CHIPNAME)
 
     # Determine chip family and name
     string(SUBSTRING ${CHIPNAME} 0 8 CHIPFAMILY)
+    string(SUBSTRING ${CHIPNAME} 0 9 CHIPCLASS)
     string(TOLOWER ${CHIPNAME} CHIPNAME_LOW)
     string(SUBSTRING ${CHIPNAME_LOW} 2 -1 CHIPNAME_LOW_NOAT)
 
@@ -85,7 +86,7 @@ function(samx21_hal TARGET CHIPNAME)
     target_link_directories(${TARGET} INTERFACE ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/lib/${CHIPFAMILY}/ld)
     set_target_properties(${TARGET} PROPERTIES DEFAULT_LINKERSCRIPT "${CMAKE_CURRENT_FUNCTION_LIST_DIR}/lib/${CHIPFAMILY}/ld/${CHIPNAME_LOW_NOAT}_flash.ld")
 
-    target_compile_definitions(${TARGET} INTERFACE "__${CHIPNAME}__" "__${CHIPFAMILY}__")
+    target_compile_definitions(${TARGET} INTERFACE "__${CHIPNAME}__" "__${CHIPFAMILY}__" "__${CHIPCLASS}__")
     target_compile_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-mthumb")
     target_link_options(${TARGET} INTERFACE "-mcpu=cortex-m0plus" "-mthumb")
 

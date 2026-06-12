@@ -56,6 +56,7 @@ target_sources(samx21-sources INTERFACE
     # Communication
     src/hal/sercom_usart.c
     src/hal/sercom_spi.c
+    src/hal/sercom_i2c.c
     src/hal/sercom_common.c
 
     # Utilities

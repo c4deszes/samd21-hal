@@ -5,6 +5,7 @@
 #include "sam.h"
 
 #include <stddef.h>
+#include <stdbool.h>
 
 #define SERCOM_I2C_TIMEOUT_LOOPS 100000U
 #define SERCOM_I2C_BUSSTATE_IDLE 1U
@@ -69,8 +70,50 @@ static sercom_i2c_result_t i2c_wait_flag(sercom_registers_t* peripheral, uint8_t
     return i2c_status_to_result(peripheral);
 }
 
-static inline void i2c_send_stop(sercom_registers_t* peripheral) {
-    peripheral->I2CM.SERCOM_CTRLB |= SERCOM_I2CM_CTRLB_CMD(3U);
+static inline void i2c_write_ctrlb(sercom_registers_t* peripheral, uint32_t ctrlb_masked_bits) {
+    uint32_t ctrlb = peripheral->I2CM.SERCOM_CTRLB;
+    ctrlb &= ~(SERCOM_I2CM_CTRLB_CMD_Msk | SERCOM_I2CM_CTRLB_ACKACT_Msk);
+    ctrlb |= ctrlb_masked_bits;
+    peripheral->I2CM.SERCOM_CTRLB = ctrlb;
+}
+
+static sercom_i2c_result_t i2c_send_stop(sercom_registers_t* peripheral) {
+    i2c_write_ctrlb(peripheral, SERCOM_I2CM_CTRLB_CMD(3U));
+    return i2c_wait_sync(peripheral, SERCOM_I2CM_SYNCBUSY_SYSOP_Msk);
+}
+
+static sercom_i2c_result_t i2c_write_internal(sercom_registers_t* peripheral,
+                                               uint8_t address,
+                                               const uint8_t* data,
+                                               uint16_t size,
+                                               bool send_stop) {
+    sercom_i2c_result_t result;
+
+    peripheral->I2CM.SERCOM_ADDR = SERCOM_I2CM_ADDR_ADDR((uint32_t)address << 1U);
+    result = i2c_wait_flag(peripheral, SERCOM_I2CM_INTFLAG_MB_Msk);
+    if (result != sercom_i2c_ok) {
+        if (send_stop) {
+            (void)i2c_send_stop(peripheral);
+        }
+        return result;
+    }
+
+    for (uint16_t i = 0; i < size; i++) {
+        peripheral->I2CM.SERCOM_DATA = data[i];
+        result = i2c_wait_flag(peripheral, SERCOM_I2CM_INTFLAG_MB_Msk);
+        if (result != sercom_i2c_ok) {
+            if (send_stop) {
+                (void)i2c_send_stop(peripheral);
+            }
+            return result;
+        }
+    }
+
+    if (send_stop) {
+        return i2c_send_stop(peripheral);
+    }
+
+    return sercom_i2c_ok;
 }
 
 void SERCOM_I2C_SetupMaster(uint8_t sercom, uint32_t clock_in, uint32_t baudrate) {
@@ -115,7 +158,6 @@ void SERCOM_I2C_Disable(uint8_t sercom) {
 sercom_i2c_result_t SERCOM_I2C_Write(uint8_t sercom, uint8_t address,
                                      const uint8_t* data, uint16_t size) {
     sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
-    sercom_i2c_result_t result;
 
     if ((size > 0U) && (data == NULL)) {
         return sercom_i2c_invalid_arg;
@@ -124,24 +166,7 @@ sercom_i2c_result_t SERCOM_I2C_Write(uint8_t sercom, uint8_t address,
         return sercom_i2c_invalid_arg;
     }
 
-    peripheral->I2CM.SERCOM_ADDR = SERCOM_I2CM_ADDR_ADDR((uint32_t)address << 1U);
-    result = i2c_wait_flag(peripheral, SERCOM_I2CM_INTFLAG_MB_Msk);
-    if (result != sercom_i2c_ok) {
-        i2c_send_stop(peripheral);
-        return result;
-    }
-
-    for (uint16_t i = 0; i < size; i++) {
-        peripheral->I2CM.SERCOM_DATA = data[i];
-        result = i2c_wait_flag(peripheral, SERCOM_I2CM_INTFLAG_MB_Msk);
-        if (result != sercom_i2c_ok) {
-            i2c_send_stop(peripheral);
-            return result;
-        }
-    }
-
-    i2c_send_stop(peripheral);
-    return i2c_wait_sync(peripheral, SERCOM_I2CM_SYNCBUSY_SYSOP_Msk);
+    return i2c_write_internal(peripheral, address, data, size, true);
 }
 
 sercom_i2c_result_t SERCOM_I2C_Read(uint8_t sercom, uint8_t address,
@@ -159,18 +184,21 @@ sercom_i2c_result_t SERCOM_I2C_Read(uint8_t sercom, uint8_t address,
         return sercom_i2c_ok;
     }
 
+    /* Reset ACK action between transactions: previous read leaves NACK set on last byte. */
+    i2c_write_ctrlb(peripheral, 0U);
+
     peripheral->I2CM.SERCOM_ADDR = SERCOM_I2CM_ADDR_ADDR(((uint32_t)address << 1U) | 1U);
 
     for (uint16_t i = 0; i < size; i++) {
         result = i2c_wait_flag(peripheral, SERCOM_I2CM_INTFLAG_SB_Msk);
         if (result != sercom_i2c_ok) {
-            i2c_send_stop(peripheral);
+            (void)i2c_send_stop(peripheral);
             return result;
         }
 
         if (i == (size - 1U)) {
-            peripheral->I2CM.SERCOM_CTRLB |= SERCOM_I2CM_CTRLB_ACKACT_Msk |
-                                             SERCOM_I2CM_CTRLB_CMD(3U);
+            i2c_write_ctrlb(peripheral, SERCOM_I2CM_CTRLB_ACKACT_Msk |
+                                        SERCOM_I2CM_CTRLB_CMD(3U));
         }
 
         data[i] = peripheral->I2CM.SERCOM_DATA;
@@ -182,7 +210,24 @@ sercom_i2c_result_t SERCOM_I2C_Read(uint8_t sercom, uint8_t address,
 sercom_i2c_result_t SERCOM_I2C_WriteRead(uint8_t sercom, uint8_t address,
                                          const uint8_t* tx_data, uint16_t tx_size,
                                          uint8_t* rx_data, uint16_t rx_size) {
-    sercom_i2c_result_t result = SERCOM_I2C_Write(sercom, address, tx_data, tx_size);
+    sercom_registers_t* peripheral = SERCOM_GetPeripheral(sercom);
+    sercom_i2c_result_t result;
+
+    if ((tx_size > 0U) && (tx_data == NULL)) {
+        return sercom_i2c_invalid_arg;
+    }
+    if ((rx_size > 0U) && (rx_data == NULL)) {
+        return sercom_i2c_invalid_arg;
+    }
+    if (peripheral == NULL) {
+        return sercom_i2c_invalid_arg;
+    }
+
+    if (tx_size == 0U) {
+        return SERCOM_I2C_Read(sercom, address, rx_data, rx_size);
+    }
+
+    result = i2c_write_internal(peripheral, address, tx_data, tx_size, false);
     if (result != sercom_i2c_ok) {
         return result;
     }

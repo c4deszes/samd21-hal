@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "hal/sercom_common.h"
 
 typedef enum {
@@ -26,8 +27,16 @@ void SERCOM_I2C_Disable(uint8_t sercom);
 sercom_i2c_result_t SERCOM_I2C_Write(uint8_t sercom, uint8_t address,
                                      const uint8_t* data, uint16_t size);
 
+sercom_i2c_result_t SERCOM_I2C_WriteEx(uint8_t sercom, uint8_t address,
+                                       const uint8_t* data, uint16_t size,
+                                       bool stop);
+
 sercom_i2c_result_t SERCOM_I2C_Read(uint8_t sercom, uint8_t address,
                                     uint8_t* data, uint16_t size);
+
+sercom_i2c_result_t SERCOM_I2C_ReadEx(uint8_t sercom, uint8_t address,
+                                      uint8_t* data, uint16_t size,
+                                      bool stop);
 
 sercom_i2c_result_t SERCOM_I2C_WriteRead(uint8_t sercom, uint8_t address,
                                          const uint8_t* tx_data, uint16_t tx_size,

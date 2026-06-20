@@ -4,7 +4,7 @@ project(
     samd21-hal
     DESCRIPTION "SAMD21 Hardware Abstraction Layer"
     LANGUAGES C CXX ASM)
-set(PROJECT_VERSION "0.5.1")
+set(PROJECT_VERSION "0.6.0")
 
 ################################################################################
 # Options
